@@ -72,48 +72,93 @@ handleErrors = () => {
       </div>
     )
   }
-render() {
-    const {username, email, password} = this.state
-return (
-      <div>
-        <h1>Log In</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="username"
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          />
-          <input
-            placeholder="email"
-            type="text"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          />
-          <input
-            placeholder="password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
-          <button placeholder="submit" type="submit">
-            Log In
-          </button>
-          <div>
-            or <Link to='/signup'>sign up</Link>
-          </div>
-          
+
+  render() {
+      const {username, password} = this.state
+    
+  return (
+   
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={"classes.paper"}>
+          <Avatar className={"classes.avatar"}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Log in
+          </Typography>
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              placeholder="username"
+              type="text"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={this.handleChange}
+              placeholder="password"
+  
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={"log in"}
+            >
+              Log in
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link to='/signup' variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
           </form>
           <div>
-          {
-            this.state.errors ? this.handleErrors() : null
-          }
+        {
+           this.state.errors ? this.handleErrors() : null
+        }
+          </div>
         </div>
-      </div>
+        <Box mt={8}>
+    
+        </Box>
+      </Container>
     );
   }
-}
-export default Login;
+  }
+  export default Login;
+
+
+

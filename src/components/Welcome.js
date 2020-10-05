@@ -5,10 +5,11 @@ export class Welcome extends Component {
 
         return (
             <div>
-                <h1>Welcome USER</h1>
+
             </div>
         )
     }
+    
 }
 
 export default Welcome

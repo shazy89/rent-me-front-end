@@ -6,6 +6,8 @@ import Login from './Login'
 import Signup from './Signup'
 import Offline from './components/Offline'
 import Welcome from './components/Welcome'
+import Navbar from './components/Navbar'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -45,39 +47,39 @@ render() {
   const isLoggedIn = this.state.isLoggedIn;
   let stat;
   if (isLoggedIn){
-    stat = <Welcome  user={this.state.user}/>
-  } else {
-    stat = <Offline/>
-  }
+    stat = <Welcome />
+  } 
     return (
       <div>
-        <BrowserRouter>
-          <Switch>
-            <Route 
-              exact path='/' 
-              render={props => (
-              <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>
-              )}
-            />
-            <Route 
-              exact path='/login' 
-              render={props => (
-              <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
-              )}
-            />
-            <Route 
-              exact path='/signup' 
-              render={props => (
-              <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
-              )}
-            />
-          </Switch>
-        </BrowserRouter>
-           <div>
-             {stat}
-           </div>
+   <BrowserRouter>
+<Switch>
+  <Route 
+    exact path='/' 
+    render={props => (
+    <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>
+    )}
+  />
+  <Route 
+    exact path='/login' 
+    render={props => (
+    <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+    )}
+  />
+  <Route 
+    exact path='/signup' 
+    render={props => (
+    <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+    )}
+  />
+</Switch>
+</BrowserRouter>
+ <div>
+   {stat}
+ </div>
+
       </div>
     );
   }
 }
 export default App;
+
