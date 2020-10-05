@@ -4,9 +4,10 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
-import Offline from './components/Offline'
+//import Offline from './components/Offline'
 import Welcome from './components/Welcome'
-import Navbar from './components/Navbar'
+import { Navbar, NavItem, Icon } from 'react-materialize'
+
 
 class App extends Component {
   constructor(props) {
@@ -50,32 +51,37 @@ render() {
     stat = <Welcome />
   } 
     return (
-      <div>
+      <div class="container">
+
+
    <BrowserRouter>
 <Switch>
-  <Route 
+ <Route 
     exact path='/' 
     render={props => (
     <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>
     )}
-  />
-  <Route 
+  /> 
+ <Route 
     exact path='/login' 
     render={props => (
-    <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+      <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
     )}
   />
-  <Route 
+    <Route 
     exact path='/signup' 
     render={props => (
-    <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+      <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
     )}
   />
 </Switch>
+
 </BrowserRouter>
+
  <div>
    {stat}
  </div>
+
 
       </div>
     );
