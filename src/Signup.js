@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import {Link} from 'react-router-dom'
-
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +17,7 @@ handleChange = (event) => {
       [name]: value
     })
   };
-  handleSubmit = (event) => {
+handleSubmit = (event) => {
     event.preventDefault()
     const {username, email, password, password_confirmation} = this.state
     let user = {
@@ -41,26 +39,24 @@ axios.post('http://localhost:3001/users', {user}, {withCredentials: true})
     })
     .catch(error => console.log('api errors:', error))
   };
-  redirect = () => {
+redirect = () => {
     this.props.history.push('/')
   }
-  handleErrors = () => {
+handleErrors = () => {
     return (
       <div>
         <ul>{this.state.errors.map((error) => {
           return <li key={error}>{error}</li>
-        })}
-        </ul> 
+        })}</ul> 
       </div>
     )
-  };
-  
+  }
 render() {
     const {username, email, password, password_confirmation} = this.state
 return (
       <div>
-        <h1>Sign Up</h1>        
-<form onSubmit={this.handleSubmit}>
+        <h1>Sign Up</h1>
+        <form onSubmit={this.handleSubmit}>
           <input
             placeholder="username"
             type="text"
@@ -81,7 +77,7 @@ return (
             name="password"
             value={password}
             onChange={this.handleChange}
-          />          
+          />
           <input
             placeholder="password confirmation"
             type="password"
@@ -93,11 +89,13 @@ return (
           <button placeholder="submit" type="submit">
             Sign Up
           </button>
-          <div>
-            or <Link to='/login'>login</Link>
-          </div>
       
         </form>
+        <div>
+          {
+            this.state.errors ? this.handleErrors() : null
+          }
+        </div>
       </div>
     );
   }

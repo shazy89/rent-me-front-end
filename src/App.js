@@ -4,7 +4,6 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -14,12 +13,11 @@ class App extends Component {
      };
   }
 componentDidMount() {
-  this.loginStatus()
-}
+    this.loginStatus()
+  }
 loginStatus = () => {
-    axios.get('http://localhost:3001/logged_in', 
-    {withCredentials: true})    
-.then(response => {
+    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+    .then(response => {
       if (response.data.logged_in) {
         this.handleLogin(response)
       } else {
@@ -40,16 +38,29 @@ handleLogout = () => {
     user: {}
     })
   }
-  
-  render() {
+render() {
     return (
       <div>
-         <BrowserRouter>
+        <BrowserRouter>
           <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/login' component={Login}/>
-        
-            <Route exact path='/signup' component={Signup}/>
+            <Route 
+              exact path='/' 
+              render={props => (
+              <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>
+              )}
+            />
+            <Route 
+              exact path='/login' 
+              render={props => (
+              <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+              )}
+            />
+            <Route 
+              exact path='/signup' 
+              render={props => (
+              <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+              )}
+            />
           </Switch>
         </BrowserRouter>
       </div>

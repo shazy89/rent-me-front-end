@@ -11,22 +11,25 @@ class Login extends Component {
       errors: ''
      };
   }
+  componentWillMount() {
+    return this.props.loggedInStatus ? this.redirect() : null
+  }
 handleChange = (event) => {
     const {name, value} = event.target
     this.setState({
       [name]: value
     })
   };
-  handleSubmit = (event) => {
+handleSubmit = (event) => {
     event.preventDefault()
-    const {username, email, password} = this.state 
-    let user = {
+    const {username, email, password} = this.state
+let user = {
       username: username,
       email: email,
       password: password
     }
     
-axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+    axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)
@@ -48,17 +51,18 @@ handleErrors = () => {
         <ul>
         {this.state.errors.map(error => {
         return <li key={error}>{error}</li>
-          })}
+          })
+        }
         </ul>
       </div>
     )
-  };
+  }
 render() {
     const {username, email, password} = this.state
-    return (
+return (
       <div>
-        <h1>Log In</h1>        
-<form onSubmit={this.handleSubmit}>
+        <h1>Log In</h1>
+        <form onSubmit={this.handleSubmit}>
           <input
             placeholder="username"
             type="text"
@@ -79,15 +83,20 @@ render() {
             name="password"
             value={password}
             onChange={this.handleChange}
-          />         
-        <button placeholder="submit" type="submit">
+          />
+          <button placeholder="submit" type="submit">
             Log In
-          </button>          
+          </button>
           <div>
             or <Link to='/signup'>sign up</Link>
           </div>
           
-         </form>
+          </form>
+          <div>
+          {
+            this.state.errors ? this.handleErrors() : null
+          }
+        </div>
       </div>
     );
   }
