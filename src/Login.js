@@ -80,7 +80,7 @@ render() {
             value={password}
             onChange={this.handleChange}
           />         
-<button placeholder="submit" type="submit">
+        <button placeholder="submit" type="submit">
             Log In
           </button>          
           <div>

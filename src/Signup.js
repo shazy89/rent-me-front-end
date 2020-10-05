@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -91,6 +93,9 @@ return (
           <button placeholder="submit" type="submit">
             Sign Up
           </button>
+          <div>
+            or <Link to='/login'>login</Link>
+          </div>
       
         </form>
       </div>
