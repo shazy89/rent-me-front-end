@@ -4,6 +4,8 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
+import Offline from './components/Offline'
+import Welcome from './components/Welcome'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +40,15 @@ handleLogout = () => {
     user: {}
     })
   }
+
 render() {
+  const isLoggedIn = this.state.isLoggedIn;
+  let stat;
+  if (isLoggedIn){
+    stat = <Welcome  user={this.state.user}/>
+  } else {
+    stat = <Offline/>
+  }
     return (
       <div>
         <BrowserRouter>
@@ -63,6 +73,9 @@ render() {
             />
           </Switch>
         </BrowserRouter>
+           <div>
+             {stat}
+           </div>
       </div>
     );
   }
