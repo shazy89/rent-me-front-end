@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import Home from './components/Home'
-import Login from './containers/auth/Login'
-import Signup from './containers/auth/Signup'
+
+import Login from './components/auth/Login'
+import Signup from './components/auth/Signup'
+import NavBar from './components/NavBar'
+
 
 class App extends Component {
   constructor(props) {
@@ -40,22 +42,30 @@ handleLogout = () => {
     })
   }
 
+  handleLogOut = () => {
+
+    axios.delete('http://localhost:3001/logout', {withCredentials: true})
+    .then(response => {
+      this.handleLogout()
+      this.history.push('/')
+    })
+    .catch(error => console.log(error))
+  }
+
 render() {
 
     return (
       <div >
-       <BrowserRouter>
+
+      <BrowserRouter>
+     < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn}/>
     <Switch>
-     <Route 
-        exact path='/' 
-        render={props => (
-        <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>
-        )}
-      /> 
+
      <Route 
         exact path='/login' 
         render={props => (
           <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+          
         )}
       />
         <Route 
@@ -67,12 +77,13 @@ render() {
     </Switch>
     
     </BrowserRouter>
-    
-          </div>
+      </div>
         );
       }
     }
     export default App;
+
+    
 
 
 

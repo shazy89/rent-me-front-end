@@ -59,10 +59,10 @@ handleErrors = () => {
     )
   }
 render() {
-    const {username, email, password} = this.state
+    const {username, password} = this.state
 return (
-      <div class="container">
-        <h1 ><i class="large material-icons">insert_create</i>Log In</h1>
+      <div className="container">
+        <h1 ><i className="large material-icons">insert_create</i>Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <input
             placeholder="username"
@@ -80,7 +80,7 @@ return (
           />
           <button placeholder="submit" type="submit"  
            node="button"
-           type="submit"
+   
             waves="light"
             className="waves-effect orange btn"
             ><Icon right> check</Icon>
