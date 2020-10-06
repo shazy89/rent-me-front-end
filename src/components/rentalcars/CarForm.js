@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {  Icon, TextInput, Select } from 'react-materialize'
+import { createCar } from '../../actions/carActions';
+import { connect } from 'react-redux';
 
 export class CarForm extends Component {
     constructor(props) {
@@ -20,11 +22,29 @@ export class CarForm extends Component {
         })
       };
 
+      handleSubmit = (event) => {
+        event.preventDefault()
+        const car = {
+            car: this.state
+        }
+        this.props.createCar(car, this.props.history)
+        this.setState({
+            make: '',
+            model: '',
+            vehicleType: '',
+            capacity: '',
+            baggingCapacity: '',
+            rentPrice: ''
+
+        })
+      }
+  
+
     render() {
     const {make, model, vehicleType, capacity, baggingCapacity, rentPrice} = this.state
         return (
             <div className='container'>
-            <form >
+            <form onSubmit={this.handleSubmit}>
           <TextInput
             placeholder="Make"
             type="text"
@@ -39,52 +59,48 @@ export class CarForm extends Component {
             value={model}
             onChange={this.handleChange}
           />
-          <Select
-  id="Select-9"
-  
-  onChange={this.handleChange}
-  name="vehicleType"
-  multiple={false}
-  options={{
-    classes: '',
-    dropdownOptions: {
-      alignment: 'left',
-      autoTrigger: true,
-      closeOnClick: true,
-      constrainWidth: true,
-      coverTrigger: true,
-      hover: false,
-      inDuration: 150,
-      onCloseEnd: null,
-      onCloseStart: null,
-      onOpenEnd: null,
-      onOpenStart: null,
-      outDuration: 250
-    }
-  }}
-  value={vehicleType}
->
-<option
-    disabled
-    value=""
-  >
-    Choose your option
-  </option>
-  <option value="Compact Car">
-    Compact Car
-  </option>
-  <option value="Suv">
-    Suv
-  </option>
-  <option value="Luxury Car">
-   Luxury Car
-  </option>
-</Select>
-  
-      
-
-  
-          <TextInput inputClassName='input-field col s6'
+     <Select
+        id="Select-9"
+        onChange={this.handleChange}
+        name="vehicleType"
+        multiple={false}
+        options={{
+          classes: '',
+          dropdownOptions: {
+            alignment: 'left',
+            autoTrigger: true,
+            closeOnClick: true,
+            constrainWidth: true,
+            coverTrigger: true,
+            hover: false,
+            inDuration: 150,
+            onCloseEnd: null,
+            onCloseStart: null,
+            onOpenEnd: null,
+            onOpenStart: null,
+            outDuration: 250
+          }
+        }}
+        value={vehicleType}
+      >
+      <option
+          disabled
+          value=""
+        >
+          Choose your option
+        </option>
+        <option value="Compact Car">
+          Compact Car
+        </option>
+        <option value="Suv">
+          Suv
+        </option>
+        <option value="Luxury Car">
+         Luxury Car
+        </option>
+     </Select>
+        
+        <TextInput inputClassName='input-field col s6'
             placeholder="Capacity"
             type="text"
             name="capacity"
@@ -121,5 +137,9 @@ export class CarForm extends Component {
         )
     }
 }
+  
+      
 
-export default CarForm
+  
+
+export default connect(null, { createCar })(CarForm);
