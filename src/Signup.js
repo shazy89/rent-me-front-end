@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { NavLink, Link } from 'react-router-dom';
+import { Button , Icon, TextInput } from 'react-materialize'
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -54,50 +56,58 @@ handleErrors = () => {
 render() {
     const {username, email, password, password_confirmation} = this.state
 return (
-      <div>
+      <div class="container">
         <h1>Sign Up</h1>
         <form onSubmit={this.handleSubmit}>
-          <input
+          <TextInput
             placeholder="username"
             type="text"
             name="username"
             value={username}
             onChange={this.handleChange}
           />
-          <input
+          <TextInput
             placeholder="email"
             type="text"
             name="email"
             value={email}
             onChange={this.handleChange}
           />
-          <input 
+          <TextInput 
             placeholder="password"
             type="password"
             name="password"
             value={password}
             onChange={this.handleChange}
           />
-          <input
+          <TextInput
             placeholder="password confirmation"
             type="password"
             name="password_confirmation"
             value={password_confirmation}
             onChange={this.handleChange}
-          />
-        
-          <button placeholder="submit" type="submit">
-            Sign Up
-          </button>
-      
-        </form>
-        <div>
-          {
-            this.state.errors ? this.handleErrors() : null
-          }
+            />
+          
+          <button placeholder="submit" type="submit"  
+             node="button"
+             type="submit"
+              waves="light"
+              className="waves-effect waves-light btn"
+              ><Icon right> check</Icon>
+                Sign Up
+            </button>
+             <NavLink to="/login" className="right">Already have an account? Log in</NavLink>
+          </form>
+          <div>
+            {
+              this.state.errors ? this.handleErrors() : null
+            }
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
+    
+
+        
 export default Signup;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import { Button , Icon  } from 'react-materialize'
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +61,7 @@ handleErrors = () => {
 render() {
     const {username, email, password} = this.state
 return (
-      <div>
+      <div class="container">
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <input
@@ -77,11 +78,17 @@ return (
             value={password}
             onChange={this.handleChange}
           />
-          <button placeholder="submit" type="submit">
+          <button placeholder="submit" type="submit"  
+           node="button"
+           type="submit"
+            waves="light"
+            className="waves-effect waves-light btn"
+            ><Icon right> check</Icon>
+        
             Log In
           </button>
           <div>
-            or <Link to='/signup'>sign up</Link>
+           <Link to='/signup'>Don't have an account? Sign Up</Link>
           </div>
           
           </form>
