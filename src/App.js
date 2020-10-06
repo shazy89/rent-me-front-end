@@ -5,6 +5,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import NavBar from './components/NavBar'
+import CarForm from './components/rentalcars/CarForm'
 
 
 class App extends Component {
@@ -56,11 +57,10 @@ render() {
 
     return (
       <div >
-
       <BrowserRouter>
      < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn}/>
-    <Switch>
-
+     <Switch>
+     <Route path='/cars/new' component={ CarForm }/>
      <Route 
         exact path='/login' 
         render={props => (
@@ -82,6 +82,7 @@ render() {
       }
     }
     export default App;
+
 
     
 
