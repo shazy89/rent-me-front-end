@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import Home from './Home'
-import Login from './Login'
-import Signup from './Signup'
-
-
-
-
+import Home from './components/Home'
+import Login from './containers/auth/Login'
+import Signup from './containers/auth/Signup'
 
 class App extends Component {
   constructor(props) {
@@ -77,6 +73,10 @@ render() {
       }
     }
     export default App;
+
+
+
+
       
 
 

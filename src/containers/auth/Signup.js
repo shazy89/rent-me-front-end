@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { NavLink, Link } from 'react-router-dom';
-import { Button , Icon, TextInput } from 'react-materialize'
+import { NavLink } from 'react-router-dom';
+import {  Icon, TextInput } from 'react-materialize'
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -57,7 +57,8 @@ render() {
     const {username, email, password, password_confirmation} = this.state
 return (
       <div class="container">
-        <h1>Sign Up</h1>
+        <h1 ><i class="large material-icons">insert_create</i>Sign Up</h1>
+
         <form onSubmit={this.handleSubmit}>
           <TextInput
             placeholder="username"
@@ -92,11 +93,12 @@ return (
              node="button"
              type="submit"
               waves="light"
-              className="waves-effect waves-light btn"
+              className="waves-effect orange btn"
               ><Icon right> check</Icon>
                 Sign Up
             </button>
              <NavLink to="/login" className="right">Already have an account? Log in</NavLink>
+             <NavLink to='/' style={{ margin: '0 20px 20px'}}>Home Page</NavLink>
           </form>
           <div>
             {
