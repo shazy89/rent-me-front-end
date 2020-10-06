@@ -1,5 +1,5 @@
 export default (state=[], action) => {
-//debugger
+
     switch(action.type) {
         case "ADD_CARS":
             return action.cars;

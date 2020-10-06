@@ -1,4 +1,4 @@
-import axios from 'axios'
+
 
 const addCars = (cars) => {
 return {
@@ -6,16 +6,25 @@ return {
     cars
 }
 }
+export const fetchCars = () => {
+  
+    return (dispatch) => {
+        fetch('http://localhost:3001/cars')
+            .then( resp => resp.json() )
+            .then( cars => { 
+                dispatch(addCars(cars))})
+    }
+}
  const addCar = car => {
      return {
        type: 'ADD_CAR',
        car
      };
    };
+
    
   export const createCar = (carData, history) => {
     return (dispatch) => {
-        debugger
         fetch('http://localhost:3001/cars', {
             method: "POST",
             headers: {
@@ -31,6 +40,7 @@ return {
             })
     }
 }
+
    
 
     
