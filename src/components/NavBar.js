@@ -7,7 +7,7 @@ const NavBar = (props) => {
 
 return (
     <div>
-        <CarList/>
+<CarList/>
   <Navbar alignLinks="right" className="fb8c00 orange darken-1"
     brand={ <a className="brand-logo" href='/'  ><i className="large material-icons" >insert_wb_incandescent</i>RentMe</a>  }> 
       
@@ -18,8 +18,10 @@ return (
         } </NavItem> 
       <br></br>
      {  props.loggedInStatus ? <NavItem  onClick={props.handleLogOut}>Log Out </NavItem>  : null }
-      </Navbar>
+  </Navbar>
       <Link to="/cars/new"> Create car</Link>
+      <br/>
+      <Link to="/upload/img"> Upload img</Link>
     </div>
   );
 };
