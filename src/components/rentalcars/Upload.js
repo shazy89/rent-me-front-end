@@ -29,9 +29,9 @@ class App extends Component {
     })
   })
     .then(res=>res.json())
-    .then(image=>{
+    .then(image=>{ 
       this.setState({
-        pic: image.imageUrl
+        pic: image.image_url
       })
     })
 

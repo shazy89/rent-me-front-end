@@ -23,7 +23,17 @@ export const fetchCars = () => {
    };
 
    
-  export const createCar = (carData, history) => {
+  export const createCar = (car, history) => {
+    const carParams = {
+        car: {
+            make: car.car.make,
+              model: car.car.model,
+              vehicleType: car.car.model,
+              capacity: car.car.model ,
+              baggingCapacity: car.car.model,
+              rentPrice: car.car.rentPrice,
+              img: car.car.reader.result}
+             }
     return (dispatch) => {
         fetch('http://localhost:3001/cars', {
             method: "POST",
@@ -31,7 +41,7 @@ export const fetchCars = () => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(carData)
+            body: JSON.stringify(carParams)
         })
             .then( resp => resp.json() )
             .then( car => {
@@ -40,6 +50,7 @@ export const fetchCars = () => {
             })
     }
 }
+ 
 
    
 

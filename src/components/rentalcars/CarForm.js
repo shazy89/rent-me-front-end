@@ -1,67 +1,144 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+//import React, { Component } from 'react'
 import {  Icon, TextInput, Select } from 'react-materialize'
 import { createCar } from '../../actions/carActions';
 import { connect } from 'react-redux';
 
-export class CarForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            make: '',
-            model: '',
-            vehicleType: '',
-            capacity: '',
-            baggingCapacity: '',
-            rentPrice: ''
-        };
-     }
-     handleChange = (event) => {
-        const {name, value} = event.target
-        this.setState({
-          [name]: value
-        })
-      };
+const CarForm = ({createCar, history }) => {
+    const [make, setMake] = useState("")
+    const [model, setModel] = useState("")
+    const [vehicleType, setvehicleType] = useState("")
+    const [capacity, setCapacity] = useState("")
+    const [baggingCapacity, setBaggingCapacity] = useState("")
+    const [rentPrice, setRentPrice] = useState("")
+    const [img, setImg] = useState("")
+    const [errMsg, setErrMsg] = useState('');
+    
+    const [selectedFile, setSelectedFile] = useState();
 
-      handleSubmit = (event) => {
-        event.preventDefault()
+    const handleFileInputChange = (e) => {
+        const file = e.target.files[0];
+     //   previewFile(file);
+        setSelectedFile(file);
+
+        setImg(e.target.value);
+    };
+
+    
+    
+    const handleSubmit = e => {
+        e.preventDefault();
+        if (!selectedFile) return;
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+
         const car = {
-            car: this.state
+            car: {make, model, vehicleType, capacity, baggingCapacity, rentPrice, reader}
         }
-        this.props.createCar(car, this.props.history)
-        this.setState({
-            make: '',
-            model: '',
-            vehicleType: '',
-            capacity: '',
-            baggingCapacity: '',
-            rentPrice: ''
+        //reader.result
+        reader.onloadend = () => {
+            createCar(car, history);
+        };
+        reader.onerror = () => {
+            console.error('AHHHHHHHH!!');
+            setErrMsg('something went wrong!');
+        };
 
-        })
-      }
+
+    }
+
+ //       this.state = { 
+ //           make: '',
+ //           model: '',
+ //           vehicleType: '',
+ //           capacity: '',
+ //           baggingCapacity: '',
+ //           rentPrice: '',
+ //           img: ''
+ //       };
+ //    }
+     
+//    handleChange = (event) => {
+//
+// //      if (event.target.files){
+// //     const file = event.target.files[0];
+// //     this.selectedFile(file)
+// // }
+// const {name, value} = event.target
+//       this.setState({
+//         [name]: value
+//       })
+//
+//   };
+   
+ //   selectedFile = (data) => {
+ //     const reader = new FileReader();
+ //     reader.readAsDataURL(data)
+ //
+ //     reader.onloadend = () => {
+ //       this.handleImg(reader.result);
+ //     };
+ // }
+    
+  
+//  handleImg = data => {
+//      return (data)
+//      }
+//
+//      handleSubmit = (event) => {
+//        event.preventDefault()
+//
+//        const car = {
+//            car: this.state
+//        }
+//
+//        this.props.createCar(car, this.props.history)
+//        this.setState({
+//            make: '',
+//            model: '',
+//            vehicleType: '',
+//            capacity: '',
+//            baggingCapacity: '',
+//            rentPrice: '',
+//            img: ''
+//  
+//        })
+//      }
   
 
-    render() {
-    const {make, model, vehicleType, capacity, baggingCapacity, rentPrice} = this.state
+
+
+   //   previewFile = (file) => {
+   //     const reader = new FileReader();
+   //     reader.readAsDataURL(file);
+   // //    reader.onloadend = () => {
+   // //        setPreviewSource(reader.result);
+   // //    };
+   // };
+  
+
+  
+ //   const {make, model, vehicleType, capacity, baggingCapacity, rentPrice, img} = this.state
         return (
             <div className='container'>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={ handleSubmit }>
           <TextInput
             placeholder="Make"
             type="text"
             name="make"
             value={make}
-            onChange={this.handleChange}
+            onChange={ e => setMake(e.target.value)}
           />
           <TextInput
             placeholder="Model"
             type="text"
             name="model"
             value={model}
-            onChange={this.handleChange}
+            onChange={e => setModel(e.target.value)}
           />
      <Select
         id="Select-9"
-        onChange={this.handleChange}
+        onChange={e => setvehicleType(e.target.value)}
         name="vehicleType"
         multiple={false}
         options={{
@@ -105,22 +182,31 @@ export class CarForm extends Component {
             type="text"
             name="capacity"
             value={capacity}
-            onChange={this.handleChange}
+            onChange={e => setCapacity(e.target.value)}
             />
           <TextInput
             placeholder="BaggingCapacity"
             type="text"
             name="baggingCapacity"
             value={baggingCapacity}
-            onChange={this.handleChange}
+            onChange={e => setBaggingCapacity(e.target.value)}
             />
           <TextInput
             placeholder="RentPrice"
             type="text"
             name="rentPrice"
             value={rentPrice}
-            onChange={this.handleChange}
+            onChange={e => setRentPrice(e.target.value)}
             />
+          <TextInput
+            id="TextInput-4"
+            label="img"
+            type="file"
+            name="img"
+            onChange={handleFileInputChange}
+            value= {img}
+            
+           />
           
           <button placeholder="submit" type="submit"  
              node="button"
@@ -135,11 +221,11 @@ export class CarForm extends Component {
                 
             </div>
         )
-    }
 }
+
   
       
+     export default connect(null, { createCar })(CarForm);
 
   
 
-export default connect(null, { createCar })(CarForm);

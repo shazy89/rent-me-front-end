@@ -13,6 +13,7 @@ export default function UploadCarImg() {
         const file = e.target.files[0];
         previewFile(file);
         setSelectedFile(file);
+
         setFileInputState(e.target.value);
     };
 
@@ -24,14 +25,16 @@ export default function UploadCarImg() {
         };
     };
 
+
     const handleSubmitFile = (e) => {
         e.preventDefault();
 
         if (!selectedFile) return;
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
+        debugger
         reader.onloadend = () => {
-            uploadImage(reader.result);
+            upload(reader.result);
         };
         reader.onerror = () => {
             console.error('AHHHHHHHH!!');
@@ -39,22 +42,27 @@ export default function UploadCarImg() {
         };
     };
 
-    const uploadImage = async (base64EncodedImage) => {
-        debugger
-        try {
-            await fetch('https://api.cloudinary.com/v1_1/dytheecsk/image/upload', {
-                method: 'POST',
-                body: JSON.stringify({ data: base64EncodedImage }),
-                headers: { 'Content-Type': 'application/json' },
-            });
-            setFileInputState('');
-            setPreviewSource('');
-            setSuccessMsg('Image uploaded successfully');
-        } catch (err) {
-            console.error(err);
-            setErrMsg('Something went wrong!');
+    const upload = (data)=>{
+
+        console.log(data);
+   debugger
+  
+        fetch('http://localhost:3001/images', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },body: JSON.stringify({image:{
+          imageUrl: data
         }
-    };
+        })
+      })
+        .then(res=>res.json())
+        .then(image=>{ 
+              console.log(image)
+        })
+    }
+    
         
     return (
         <div>

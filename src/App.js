@@ -6,7 +6,7 @@ import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import NavBar from './components/NavBar'
 import CarForm from './components/rentalcars/CarForm'
-import Upload from './components/rentalcars/Upload'
+import UploadCarImg from './components/rentalcars/UploadCarImg'
 
 
 class App extends Component {
@@ -62,7 +62,7 @@ render() {
      < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn}/>
      <Switch>
      <Route path='/cars/new' component={ CarForm }/>
-     <Route path='/upload/img' component={ Upload }/>
+     <Route path='/upload/img' component={ UploadCarImg }/>
      <Route 
         exact path='/login' 
         render={props => (
