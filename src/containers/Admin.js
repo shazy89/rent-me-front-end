@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import CarList from '../components/rentalcars/CarList'
+//import CarList from '../components/rentalcars/CarList'
 import CarForm from '../components/rentalcars/CarForm'
 import {Link} from 'react-router-dom'
 import { Tabs, Tab, Button} from 'react-materialize'
-
-const Admin = ({ loggedInStatus }) => {
+//import CarCard from './CarCard'
+const Admin = (props) => {
 return (
     <div>
     <Tabs className="tab-demo z-depth-1">
@@ -18,8 +18,8 @@ return (
     }}
     title="Create Car"
     >
-    
-    <CarForm />
+    <CarForm {...props}/>
+ 
   </Tab>
   <Tab
     

@@ -24,13 +24,14 @@ export const fetchCars = () => {
 
    
   export const createCar = (car, history) => {
+      debugger
     const carParams = {
         car: {
-            make: car.car.make,
+              make: car.car.make,
               model: car.car.model,
-              vehicleType: car.car.model,
-              capacity: car.car.model ,
-              baggingCapacity: car.car.model,
+              vehicleType: car.car.vehicleType,
+              capacity: car.car.capacity ,
+              baggingCapacity: car.car.baggingCapacity,
               rentPrice: car.car.rentPrice,
               img: car.car.reader.result}
              }
@@ -47,7 +48,7 @@ export const fetchCars = () => {
             .then( resp => resp.json() )
             .then( car => {
                 dispatch(addCar(car))
-                history.push('/cars/new') // redirects to /pets
+                history.push('/') // redirects to /pets
             })
     }
 }
