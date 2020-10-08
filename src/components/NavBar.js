@@ -20,12 +20,11 @@ return (
      {  props.loggedInStatus ? <NavItem  onClick={props.handleLogOut}>Log Out </NavItem>  : null }
   </Navbar>
       <Link to="/cars/new"> Create car</Link>
-      <br/>
-      <Link to="/upload/img"> Upload img</Link>
     </div>
   );
 };
 export default NavBar;
+
 
         
  

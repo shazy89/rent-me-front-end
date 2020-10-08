@@ -13,112 +13,50 @@ const CarForm = ({createCar, history }) => {
     const [rentPrice, setRentPrice] = useState("")
     const [img, setImg] = useState("")
     const [errMsg, setErrMsg] = useState('');
-    
     const [selectedFile, setSelectedFile] = useState();
+    const [previewSource, setPreviewSource] = useState('');
 
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
-     //   previewFile(file);
+        previewFile(file);
         setSelectedFile(file);
 
         setImg(e.target.value);
     };
 
-    
-    
+    const previewFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setPreviewSource(reader.result);
+        };
+    };
+
     const handleSubmit = e => {
         e.preventDefault();
         if (!selectedFile) return;
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
-
         const car = {
             car: {make, model, vehicleType, capacity, baggingCapacity, rentPrice, reader}
         }
-        //reader.result
         reader.onloadend = () => {
             createCar(car, history);
         };
         reader.onerror = () => {
             console.error('AHHHHHHHH!!');
-            setErrMsg('something went wrong!');
+            setErrMsg('something went wrong please  try again!');
         };
-
-
+        setMake("")
+        setModel("")
+        setvehicleType("")
+        setCapacity("")
+        setBaggingCapacity("")
+        setRentPrice("")
+        setImg()
+        setSelectedFile()
     }
-
- //       this.state = { 
- //           make: '',
- //           model: '',
- //           vehicleType: '',
- //           capacity: '',
- //           baggingCapacity: '',
- //           rentPrice: '',
- //           img: ''
- //       };
- //    }
-     
-//    handleChange = (event) => {
-//
-// //      if (event.target.files){
-// //     const file = event.target.files[0];
-// //     this.selectedFile(file)
-// // }
-// const {name, value} = event.target
-//       this.setState({
-//         [name]: value
-//       })
-//
-//   };
-   
- //   selectedFile = (data) => {
- //     const reader = new FileReader();
- //     reader.readAsDataURL(data)
- //
- //     reader.onloadend = () => {
- //       this.handleImg(reader.result);
- //     };
- // }
-    
-  
-//  handleImg = data => {
-//      return (data)
-//      }
-//
-//      handleSubmit = (event) => {
-//        event.preventDefault()
-//
-//        const car = {
-//            car: this.state
-//        }
-//
-//        this.props.createCar(car, this.props.history)
-//        this.setState({
-//            make: '',
-//            model: '',
-//            vehicleType: '',
-//            capacity: '',
-//            baggingCapacity: '',
-//            rentPrice: '',
-//            img: ''
-//  
-//        })
-//      }
-  
-
-
-
-   //   previewFile = (file) => {
-   //     const reader = new FileReader();
-   //     reader.readAsDataURL(file);
-   // //    reader.onloadend = () => {
-   // //        setPreviewSource(reader.result);
-   // //    };
-   // };
-  
-
-  
- //   const {make, model, vehicleType, capacity, baggingCapacity, rentPrice, img} = this.state
+        
         return (
             <div className='container'>
             <form onSubmit={ handleSubmit }>
@@ -200,14 +138,20 @@ const CarForm = ({createCar, history }) => {
             />
           <TextInput
             id="TextInput-4"
-            label="img"
+            label="ADD IMG"
             type="file"
             name="img"
             onChange={handleFileInputChange}
             value= {img}
-            
-           />
-          
+            />
+           {previewSource && (
+                <img 
+                src={previewSource}
+                alt="chosen"
+                style={{ height: '100px' }}
+                />
+            )}
+          <div>
           <button placeholder="submit" type="submit"  
              node="button"
            
@@ -216,16 +160,20 @@ const CarForm = ({createCar, history }) => {
               ><Icon right> check</Icon>
                 Submit
             </button>
-
+            </div>
           </form>
                 
             </div>
         )
 }
+            
+export default connect(null, { createCar })(CarForm);
+    
+    
+          
 
   
       
-     export default connect(null, { createCar })(CarForm);
 
   
 

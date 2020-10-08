@@ -6,7 +6,7 @@ import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import NavBar from './components/NavBar'
 import CarForm from './components/rentalcars/CarForm'
-import UploadCarImg from './components/rentalcars/UploadCarImg'
+
 
 
 class App extends Component {
@@ -45,7 +45,6 @@ handleLogout = () => {
   }
 
   handleLogOut = () => {
-
     axios.delete('http://localhost:3001/logout', {withCredentials: true})
     .then(response => {
       this.handleLogout()
@@ -53,6 +52,7 @@ handleLogout = () => {
     })
     .catch(error => console.log(error))
   }
+
 
 render() {
 
@@ -62,7 +62,7 @@ render() {
      < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn}/>
      <Switch>
      <Route path='/cars/new' component={ CarForm }/>
-     <Route path='/upload/img' component={ UploadCarImg }/>
+
      <Route 
         exact path='/login' 
         render={props => (

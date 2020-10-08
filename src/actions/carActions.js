@@ -34,6 +34,7 @@ export const fetchCars = () => {
               rentPrice: car.car.rentPrice,
               img: car.car.reader.result}
              }
+           
     return (dispatch) => {
         fetch('http://localhost:3001/cars', {
             method: "POST",
