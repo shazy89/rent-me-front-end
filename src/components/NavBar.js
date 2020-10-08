@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import { Navbar, NavItem} from 'react-materialize'
-//import CarList from './rentalcars/CarList'
+
 
 const NavBar = (props) => {
 

@@ -1,5 +1,3 @@
-
-
 const addCars = (cars) => {
 return {
     type: "ADD_CARS",
@@ -52,6 +50,8 @@ export const fetchCars = () => {
             })
     }
 }
+
+
  
 
    

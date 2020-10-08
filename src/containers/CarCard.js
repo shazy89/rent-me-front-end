@@ -1,6 +1,6 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
-import {  Row, Col, Card, Icon, CardTitle } from 'react-materialize'
+import {  Col, Card, Icon, CardTitle } from 'react-materialize'
+
 
 //<li><NavLink to={`/pets/${car.id}`}>{ car.make }</NavLink></li>
 const CarCard = ({ car }) => {
@@ -9,6 +9,7 @@ const CarCard = ({ car }) => {
         <Col
           m={4}
           s={8}
+          l={3}
         >
           <Card
             closeIcon={<Icon>close</Icon>}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-//import CarList from '../components/rentalcars/CarList'
 import CarForm from '../components/rentalcars/CarForm'
 import {Link} from 'react-router-dom'
 import { Tabs, Tab, Button} from 'react-materialize'
-//import CarCard from './CarCard'
+
+
 const Admin = (props) => {
 return (
     <div>
