@@ -19,7 +19,7 @@ return (
       <br></br>
      {  props.loggedInStatus ? <NavItem  onClick={props.handleLogOut}>Log Out </NavItem>  : null }
   </Navbar>
-      <Link to="/cars/new"> Create car</Link>
+ 
     </div>
   );
 };

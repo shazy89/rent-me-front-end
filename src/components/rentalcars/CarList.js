@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { fetchCars } from '../../actions/carActions';
+import CarCard from '../../containers/CarCard'
 
-export class CarList extends Component {
-
-    componentDidMount() {
-        this.props.fetchCars()
-      }
-    render() {
-
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+const PetList = ({ cars }) => {
+  
+  const carList = cars.map((car, i) => <CarCard key={i} car={car} />)
+  return (
+      <div>
+        <h3>car List</h3>
+        <ul>
+          { carList }
+        </ul>
+      </div>
+  )
 }
 
 const mapStateToProps = carsReducer => {
@@ -24,4 +22,4 @@ const mapStateToProps = carsReducer => {
   }
 
 
-export default connect(mapStateToProps, { fetchCars })(CarList);
+export default connect(mapStateToProps)(PetList);

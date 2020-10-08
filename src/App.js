@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
+import { Button} from 'react-materialize'
 
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import NavBar from './components/NavBar'
 import CarForm from './components/rentalcars/CarForm'
+import Admin from './containers/Admin'
 
 
 
@@ -60,6 +62,7 @@ render() {
       <div >
       <BrowserRouter>
      < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn}/>
+     <Button className="black"> <Link to="/admin"> Admin User</Link> </Button>
      <Switch>
      <Route path='/cars/new' component={ CarForm }/>
 
@@ -67,7 +70,6 @@ render() {
         exact path='/login' 
         render={props => (
           <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
-          
         )}
       />
         <Route 
@@ -76,10 +78,20 @@ render() {
           <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
         )}
       />
+        <Route 
+        exact path='/admin' 
+        render={props => (
+          <Admin {...props} loggedInStatus={this.state.isLoggedIn}/>
+          
+        )}
+      />
     </Switch>
     
     </BrowserRouter>
       </div>
+
+
+          
         );
       }
     }

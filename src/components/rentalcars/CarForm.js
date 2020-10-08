@@ -60,6 +60,7 @@ const CarForm = ({createCar, history }) => {
         return (
             <div className='container'>
             <form onSubmit={ handleSubmit }>
+          
           <TextInput
             placeholder="Make"
             type="text"
@@ -67,6 +68,7 @@ const CarForm = ({createCar, history }) => {
             value={make}
             onChange={ e => setMake(e.target.value)}
           />
+ 
           <TextInput
             placeholder="Model"
             type="text"
