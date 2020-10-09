@@ -34,7 +34,7 @@ const CarForm = ({createCar, history }) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        debugger
+
         if (!selectedFile) return;
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);

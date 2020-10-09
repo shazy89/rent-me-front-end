@@ -10,14 +10,14 @@ const CarList = ({fetchCars, cars}) => {
  //<CarCard key={car.id} car={car} /> do we have to use array id or object id?
  //style={{display: 'flex', justifyContent: 'space-between'}}
    return (
-       <div className="container">
-         <h3>Cars List</h3>
+       <div >
          <Row>
          { carList } 
          </Row>
        </div>
    )
  }
+
  
  const mapStateToProps = carsReducer => {
    return {

@@ -14,23 +14,26 @@ const CarCard = ({ car }) => {
           <Card
             closeIcon={<Icon>close</Icon>}
             header={<CardTitle image={car.img} reveal waves="light"/>}
-            reveal={<ul>
-                <li>{car.make} </li>
-                <li>{car.model} </li>
-                <li>{car.vehicleType} </li>
-                <li>{car.capacity} </li>
-                <li>{car.baggingCapacity} </li>
-                <li>${car.rentPrice} </li>
-                
-                </ul>
+            reveal={
+                <div>
+                   <ul>
+                   <li>Model {car.model}  </li>
+                   <li> {car.vehicleType} </li>
+                   <li>{<Icon>person</Icon>}{car.capacity} People </li>
+                   <li>{<Icon>work</Icon>}{car.baggingCapacity} Bags</li>
+                   </ul>
+                    <h5 className="right e0e0e0 grey lighten-2">{<Icon>attach_money</Icon>} {car.rentPrice} per day</h5>
+                </div>
                 }
+
             revealIcon={<Icon>more_vert</Icon>}
-            title={car.make}
+            title= {car.make } 
           >
           </Card>
        </Col>
      )
    }
+                
    
    export default CarCard;
 

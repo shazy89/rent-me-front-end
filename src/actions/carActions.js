@@ -22,7 +22,7 @@ export const fetchCars = () => {
 
    
   export const createCar = (car, history) => {
-      debugger
+
     const carParams = {
         car: {
               make: car.car.make,

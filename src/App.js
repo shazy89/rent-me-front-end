@@ -17,6 +17,7 @@ class App extends Component {
     super(props);
     this.state = { 
       isLoggedIn: false,
+      
       user: {}
      };
   }
@@ -38,12 +39,14 @@ handleLogin = (data) => {
   
     this.setState({
       isLoggedIn: true,
+      
       user: data.data.user
     })
   }
 handleLogout = () => {
     this.setState({
     isLoggedIn: false,
+    
     user: {}
     })
   }
@@ -58,16 +61,18 @@ handleLogout = () => {
   }
 
 
+
 render() {
 
     return (
       <div >
       <BrowserRouter>
-     < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn}/>
+     < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn} />
      <Button className="black"> <Link to="/admin"> Admin User</Link> </Button>
 
      <Switch>
-     <Route path='/cars/new' component={ CarForm }/>
+ 
+     <Route exact path='/' component={ CarList }  />
 
      <Route 
         exact path='/login' 
@@ -87,9 +92,9 @@ render() {
           <Admin {...props} loggedInStatus={this.state.isLoggedIn}/>
           )}
         />
+          <Route exact path='/cars/new' component={ CarForm }/>
+
     </Switch>
-          
-    <CarList />
     </BrowserRouter>
       </div>
 
@@ -97,6 +102,9 @@ render() {
    }
  }
 export default App;
+
+          
+   
 
 
 
