@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-//import React, { Component } from 'react'
 import {  Icon, TextInput, Select } from 'react-materialize'
 import { createCar } from '../../actions/carActions';
 import { connect } from 'react-redux';
+
 
 const CarForm = ({createCar, history }) => {
     const [make, setMake] = useState("")

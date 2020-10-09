@@ -9,6 +9,8 @@ import NavBar from './components/NavBar'
 import CarForm from './components/rentalcars/CarForm'
 import Admin from './containers/Admin'
 import CarList from './components/rentalcars/CarList'
+import CarEdit from './components/rentalcars/CarEdit'
+import {connect} from 'react-redux'
 
 
 
@@ -62,7 +64,7 @@ handleLogout = () => {
   }
 
   render() {
-  
+
       return (
         <div >
         <BrowserRouter>
@@ -91,7 +93,14 @@ handleLogout = () => {
             <Admin {...props} loggedInStatus={this.state.isLoggedIn}/>
             )}
           />
-            <Route exact path='/cars/new' component={ CarForm }/>
+             <Route exact path='/cars/:id/edit'  
+           render={props => (
+            <CarEdit {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
+            )}
+          />
+
+            <Route exact path='/cars/new' component={ CarForm } />
+     
   
       </Switch>
       </BrowserRouter>
@@ -100,7 +109,12 @@ handleLogout = () => {
        );
      }
    }
-  export default App;
+   const mapStateToProps = carsReducer => {
+    return {
+      cars: carsReducer
+    }
+    }
+   export default connect(mapStateToProps)(App);
 
 
 

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import CarCard from '../../containers/CarCard';
 import {connect} from 'react-redux'
 import { fetchCars, deleteCarCards } from '../../actions/carActions';
 import {  Row } from 'react-materialize'
-
+import CarEdit from './CarEdit'
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 const CarList = ({fetchCars, cars, deleteCarCards}) => {
+
   useEffect(() => {fetchCars()},[])
 
   const carList = cars.cars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards}/>)
@@ -12,9 +14,11 @@ const CarList = ({fetchCars, cars, deleteCarCards}) => {
  //style={{display: 'flex', justifyContent: 'space-between'}}
    return (
        <div >
+
          <Row>
-         { carList } 
+           { carList } 
          </Row>
+
        </div>
    )
  }
