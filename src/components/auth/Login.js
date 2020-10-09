@@ -31,7 +31,7 @@ handleSubmit = (event) => {
     }
     
     axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
-    .then(response => {
+    .then(response => {  
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)
         this.redirect()
@@ -43,6 +43,7 @@ handleSubmit = (event) => {
     })
     .catch(error => console.log('api errors:', error))
   };
+ 
 redirect = () => {
     this.props.history.push('/')
   }

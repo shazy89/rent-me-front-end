@@ -50,6 +50,19 @@ export const fetchCars = () => {
             })
     }
 }
+const deleteCar = (carId) => {
+return {
+    type: 'DELETE_CAR',
+    carId
+}
+}
+///cars/:id
+export const deleteCarCards = (carId) => {
+    debugger
+    return (dispatch) => {
+       
+    }
+}
 
 
  

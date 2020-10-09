@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import { Navbar, NavItem, Button} from 'react-materialize'
+import { Navbar, NavItem, Icon} from 'react-materialize'
 
 
 const NavBar = (props) => {
@@ -9,7 +9,7 @@ return (
     <div>
 
   <Navbar alignLinks="right" className="fb8c00 orange darken-1" 
-  brand={ <Link to='/'>RentMe</Link>  } > 
+     brand={ <Link className='center' to='/'><Icon>wb_sunny</Icon>RentMe</Link>  } > 
      
      <NavItem> {props.loggedInStatus ? null : <Link to='/login'>Log In</Link> }</NavItem>
       <br></br>

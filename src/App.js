@@ -28,7 +28,7 @@ loginStatus = () => {
     axios.get('http://localhost:3001/logged_in', {withCredentials: true})
     .then(response => {  
       if (response.data.logged_in) {
-        this.handleLogin(response)
+        this.handleLogin(response.data)
       } else {
         this.handleLogout()
       }
@@ -36,13 +36,14 @@ loginStatus = () => {
     .catch(error => console.log('api errors:', error))
   }
 handleLogin = (data) => {
-  
+
     this.setState({
       isLoggedIn: true,
-      
-      user: data.data.user
+      user: data.user
     })
+
   }
+      
 handleLogout = () => {
     this.setState({
     isLoggedIn: false,
@@ -60,48 +61,48 @@ handleLogout = () => {
     .catch(error => console.log(error))
   }
 
-
-
-render() {
-
-    return (
-      <div >
-      <BrowserRouter>
-     < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn} />
-     <Button className="black"> <Link to="/admin"> Admin User</Link> </Button>
-
-     <Switch>
- 
-     <Route exact path='/' component={ CarList }  />
-
-     <Route 
-        exact path='/login' 
-        render={props => (
-          <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
-        )}
-      />
-        <Route 
-        exact path='/signup' 
-        render={props => (
-          <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
-        )}
-      />
-        <Route 
-        exact path='/admin' 
-        render={props => (
-          <Admin {...props} loggedInStatus={this.state.isLoggedIn}/>
+  render() {
+  
+      return (
+        <div >
+        <BrowserRouter>
+       < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn} />
+       { this.state.isLoggedIn ? <Button className="black"> <Link to="/admin"> Admin User</Link> </Button> : null}
+  
+       <Switch>
+   
+       <Route exact path='/' component={ CarList }  />
+  
+       <Route 
+          exact path='/login' 
+          render={props => (
+            <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
           )}
         />
-          <Route exact path='/cars/new' component={ CarForm }/>
-
-    </Switch>
-    </BrowserRouter>
-      </div>
-
-     );
+          <Route 
+          exact path='/signup' 
+          render={props => (
+            <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+          )}
+        />
+          <Route 
+          exact path='/admin' 
+          render={props => (
+            <Admin {...props} loggedInStatus={this.state.isLoggedIn}/>
+            )}
+          />
+            <Route exact path='/cars/new' component={ CarForm }/>
+  
+      </Switch>
+      </BrowserRouter>
+        </div>
+  
+       );
+     }
    }
- }
-export default App;
+  export default App;
+
+
 
           
    
