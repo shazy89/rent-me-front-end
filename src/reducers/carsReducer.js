@@ -5,7 +5,18 @@ export default (state=[], action) => {
             return action.cars;
         case "ADD_CAR":
             return [...state, action.car];
-        default:
-            return state;
-    }
-}
+        case 'DELETE_CAR':
+            const cars = state.filter(car => car.id !== action.car.id);
+              return cars;
+  
+          default:
+              return state;
+  
+  
+          }
+           
+      }
+
+
+     
+          

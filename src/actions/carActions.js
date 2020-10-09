@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const addCars = (cars) => {
 return {
     type: "ADD_CARS",
@@ -33,40 +35,46 @@ export const fetchCars = () => {
               rentPrice: car.car.rentPrice,
               img: car.car.reader.result}
              }
+             return (dispatch) => {
+                 fetch('http://localhost:3001/cars', {
+                     method: "POST",
+                     headers: {
+                         'Accept': 'application/json',
+                         'Content-Type': 'application/json'
+                     },
+                     body: JSON.stringify(carParams)
+                 })
+                     .then( resp => resp.json() )
+                     .then( car => {
+                         dispatch(addCar(car))
+                         history.push('/') // redirects to /pets
+                     })
+             }
+         }
            
-    return (dispatch) => {
-        fetch('http://localhost:3001/cars', {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(carParams)
-        })
-            .then( resp => resp.json() )
-            .then( car => {
-                dispatch(addCar(car))
-                history.push('/') // redirects to /pets
-            })
-    }
-}
-const deleteCar = (carId) => {
+const deleteCar = (car) => {
+
 return {
     type: 'DELETE_CAR',
-    carId
+    car
 }
 }
 ///cars/:id
 export const deleteCarCards = (carId) => {
-    debugger
+           
     return (dispatch) => {
-       
+       return fetch(`http://localhost:3001/cars/${carId}`, {
+           method: 'DELETE'
+       })
+            .then( resp => resp.json() )
+            .then( car => { 
+                dispatch(deleteCar(car))})
     }
 }
 
 
  
 
-   
+
 
     
