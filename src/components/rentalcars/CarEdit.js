@@ -5,8 +5,6 @@ import {connect} from 'react-redux'
 
 const CarEdit = (props) => {
 
-    
-
     const [make, setMake] = useState("")
     const [model, setModel] = useState("")
     const [vehicleType, setvehicleType] = useState("")
@@ -16,8 +14,7 @@ const CarEdit = (props) => {
     const [carId, setCarId] = useState("")
     const [img, setImg] = useState("")
     const [loading, setLoading] = useState(true)
-
-  
+    
     useEffect(() => {
       const car = props.fetchCars.cars.find(car => car.id === parseInt(props.match.params.id, 10))
         if(car) {
@@ -32,7 +29,6 @@ const CarEdit = (props) => {
             setCarId(car.id)
         }
     },[])
-
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -64,27 +60,12 @@ const CarEdit = (props) => {
         <form onSubmit={handleSubmit}>
       
       <TextInput
-        placeholder="Make"
-        type="text"
-        name="make"
-        label="Make"
-        value={make}
-        onChange={e => setMake(e.target.value)}
-      />
-    
-        <TextInput
-          placeholder="Model"
-          type="text"
-          label="Model"
-          name="model"
-          value={model}
-          onChange={e => setModel(e.target.value)}
-        />
-    <Select
-      id="Select-9"
-      onChange={e => setvehicleType(e.target.value)}
-      name="vehicleType"
-      multiple={false}
+        placeholder="Make" type="text" name="make" label="Make" value={make} onChange={e => setMake(e.target.value)} />
+
+      <TextInput  placeholder="Model" type="text" label="Model" name="model" value={model} onChange={e => setModel(e.target.value)} />
+         
+    <Select id="Select-9" onChange={e => setvehicleType(e.target.value)} name="vehicleType" multiple={false}  value={vehicleType}
+      
       options={{
         classes: '',
         dropdownOptions: {
@@ -102,73 +83,95 @@ const CarEdit = (props) => {
           outDuration: 250
         }
       }}
-      value={vehicleType}
-    >
-    <option
-        disabled
-        value=""
       >
+    <option value="" disabled   >
         Choose your option
       </option>
+
       <option value="Compact Car">
         Compact Car
       </option>
+
       <option value="Suv">
         Suv
       </option>
+
       <option value="Luxury Car">
        Luxury Car
       </option>
     </Select>
-      
-      <TextInput inputClassName='input-field col s6'
-          l={2}
-          xl={2}
-          placeholder="Capacity"
-          type="text"
-          name="capacity"
-          label="Capacity"
-          value={capacity}
-          onChange={e => setCapacity(e.target.value)}
-          />
-        <TextInput
-          placeholder="BaggingCapacity"
-          type="text"
-          name="baggingCapacity"
-          label="BaggingCapacity"
-          value={baggingCapacity}
-          onChange={e => setBaggingCapacity(e.target.value)}
-          />
-        <TextInput
-          placeholder="RentPrice"
-          type="text"
-          name="rentPrice"
-          label="RentPrice"
-          value={rentPrice}
-          onChange={e => setRentPrice(e.target.value)}
-          />
+        
+      <TextInput inputClassName='input-field col s6'  placeholder="Capacity" type="text"
+          name="capacity"  label="Capacity"value={capacity} onChange={e => setCapacity(e.target.value)} />
+           
+      <TextInput placeholder="BaggingCapacity" type="text" name="baggingCapacity"
+        label="BaggingCapacity"  value={baggingCapacity} onChange={e => setBaggingCapacity(e.target.value)} />
+          
+      <TextInput placeholder="RentPrice" type="text" name="rentPrice" label="RentPrice"
+           value={rentPrice} onChange={e => setRentPrice(e.target.value)} />   
+          
      <div>
-      <button placeholder="submit" type="submit"  
-         node="button"
-         waves="light"
-         className="waves-effect orange btn"
-       
-          ><Icon right> check</Icon>
-            Submit
+      <button placeholder="submit" type="submit" node="button"  waves="light"
+         className="waves-effect orange btn"  >
+        <Icon right> check</Icon>
+        Submit
         </button>
-        </div>
-      </form>
-            
-        </div>
-    )
+      </div>
+    </form>
+ </div>           
+  )   
+};   
     
-    }
-
-
-
-
-
 export default connect(null, { editCarCard })(CarEdit)
+    
+  
+         
+            
+        
+
+          
+          
+          
+          
+        
+          
+          
+          
+       
+          
+          
+         
+          
+          
+          
+    
+
+    
+      
+      
+     
+ 
+          
+          
+          
+          
+          
+   
+        
+        
+        
+        
+   
+    
+      
+
+  
+    
+
+
+
+
+
      
      
    
