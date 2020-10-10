@@ -7,7 +7,7 @@ import {  Row } from 'react-materialize'
 
 const CarList = ({fetchCars, cars, deleteCarCards}) => {
 
-  useEffect(() => {fetchCars()})
+  useEffect(() => {fetchCars()},[])
 
   const carList = cars.cars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards}/>)
 

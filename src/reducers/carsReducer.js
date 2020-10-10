@@ -8,14 +8,18 @@ export default (state=[], action) => {
         case 'DELETE_CAR':
             const cars = state.filter(car => car.id !== action.car.id);
               return cars;
+        case 'EDIT_CAR':
+            let cars1 = state.map(car => car.id === action.car.id);
+            return cars1;
+
+            default:
+                return state;
+    
+    
+            }
+             
+        }
   
-          default:
-              return state;
-  
-  
-          }
-           
-      }
 
 
      

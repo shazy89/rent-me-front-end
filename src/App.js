@@ -25,7 +25,7 @@ class App extends Component {
   }
 componentDidMount() {
     this.loginStatus()
-    this.props.fetchCars()
+
   }
 loginStatus = () => {
     axios.get('http://localhost:3001/logged_in', {withCredentials: true})
