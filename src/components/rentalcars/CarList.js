@@ -3,18 +3,16 @@ import CarCard from '../../containers/CarCard';
 import {connect} from 'react-redux'
 import { fetchCars, deleteCarCards } from '../../actions/carActions';
 import {  Row } from 'react-materialize'
-import CarEdit from './CarEdit'
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
+
+
 const CarList = ({fetchCars, cars, deleteCarCards}) => {
 
-  useEffect(() => {fetchCars()},[])
+  useEffect(() => {fetchCars()})
 
   const carList = cars.cars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards}/>)
- //<CarCard key={car.id} car={car} /> do we have to use array id or object id?
- //style={{display: 'flex', justifyContent: 'space-between'}}
-   return (
-       <div >
 
+   return (
+       <div className="container">
          <Row>
            { carList } 
          </Row>
@@ -23,14 +21,15 @@ const CarList = ({fetchCars, cars, deleteCarCards}) => {
    )
  }
 
- 
  const mapStateToProps = carsReducer => {
    return {
      cars: carsReducer
+    }
    }
-   }
+
+   export default connect(mapStateToProps, { fetchCars, deleteCarCards })(CarList);
  
  
- export default connect(mapStateToProps, { fetchCars, deleteCarCards })(CarList);
+ 
 
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 import { Button } from 'react-materialize'
-
+import { fetchCars } from './actions/carActions';
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import NavBar from './components/NavBar'
@@ -25,6 +25,7 @@ class App extends Component {
   }
 componentDidMount() {
     this.loginStatus()
+    this.props.fetchCars()
   }
 loginStatus = () => {
     axios.get('http://localhost:3001/logged_in', {withCredentials: true})
@@ -101,7 +102,6 @@ handleLogout = () => {
 
             <Route exact path='/cars/new' component={ CarForm } />
      
-  
       </Switch>
       </BrowserRouter>
         </div>
@@ -109,12 +109,13 @@ handleLogout = () => {
        );
      }
    }
+  
    const mapStateToProps = carsReducer => {
     return {
       cars: carsReducer
     }
     }
-   export default connect(mapStateToProps)(App);
+   export default connect(mapStateToProps, { fetchCars })(App);
 
 
 

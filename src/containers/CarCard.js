@@ -1,7 +1,7 @@
 import React from 'react'
 import {  Col, Card, Icon, CardTitle, Button } from 'react-materialize'
 import {Link} from 'react-router-dom'
-import CarEdit from '../components/rentalcars/CarEdit'
+
 
 
 const CarCard = ({ car, deleteCarCards }) => {
@@ -31,7 +31,7 @@ const CarCard = ({ car, deleteCarCards }) => {
                    <li>{<Icon>work</Icon>}{car.baggingCapacity} Bags</li>
                    </ul>
                    <>
-                    <h4 className="right e0e0e0 grey lighten-2">{<Icon>attach_money</Icon>} {car.rentPrice} per day</h4>
+                    <h5 className="right e0e0e0 grey lighten-2">{<Icon>attach_money</Icon>} {car.rentPrice} per day</h5>
                     </>
                     <>
                     <Button className="green right" onClick={handleEdit}  node="a" small  style={{margin:  '10px'   }}   waves="light"    >

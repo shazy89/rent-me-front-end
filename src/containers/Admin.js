@@ -1,24 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CarForm from '../components/rentalcars/CarForm'
-import {Link} from 'react-router-dom'
-import { Tabs, Tab, Button} from 'react-materialize'
-
+import { Tabs, Tab} from 'react-materialize'
 
 const Admin = (props) => {
 return (
-    <div>
-    <Tabs className="tab-demo z-depth-1">
-  <Tab
-    active
-    options={{
-      duration: 300,
-      onShow: null,
-      responsiveThreshold: Infinity,
-      swipeable: false
-    }}
-    title="Create Car"
-    >
-    <CarForm {...props}/>
+ <div>
+  <Tabs className="tab-demo z-depth-1">
+   <Tab
+     active
+     options={{
+       duration: 300,
+       onShow: null,
+       responsiveThreshold: Infinity,
+       swipeable: false
+     }}
+     title="Create Car"
+     >
+     <CarForm {...props}/>
  
   </Tab>
   <Tab
@@ -51,3 +49,5 @@ return (
 }
 
 export default Admin;
+
+

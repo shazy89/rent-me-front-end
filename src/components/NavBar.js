@@ -4,7 +4,7 @@ import { Navbar, NavItem, Icon} from 'react-materialize'
 
 
 const NavBar = (props) => {
-// /  
+ 
 return (
     <div>
 
