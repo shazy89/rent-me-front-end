@@ -5,11 +5,11 @@ import { fetchCars, deleteCarCards } from '../../actions/carActions';
 import {  Row } from 'react-materialize'
 
 
-const CarList = ({fetchCars, cars, deleteCarCards}) => {
+const CarList = ({fetchCars, cars, deleteCarCards, loggedInStatus}) => {
 
   useEffect(() => {fetchCars()},[])
 
-  const carList = cars.cars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards}/>)
+  const carList = cars.cars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} />)
 
    return (
        <div className="container">

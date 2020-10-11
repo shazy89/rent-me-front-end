@@ -74,7 +74,12 @@ handleLogout = () => {
   
        <Switch>
    
-       <Route exact path='/' component={ CarList }  />
+       <Route exact path='/' 
+          render={props => (
+           <CarList {...props}  loggedInStatus={this.state.isLoggedIn}/>
+         )}
+       />
+  
   
        <Route 
           exact path='/login' 

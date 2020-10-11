@@ -20,33 +20,33 @@ export const fetchCars = () => {
      };
    };
 
-   export const createCar = (car, history) => {
+export const createCar = (car, history) => {
  
-     const carParams = {
-         car: {
-               make: car.car.make,
-               model: car.car.model,
-               vehicleType: car.car.vehicleType,
-               capacity: car.car.capacity ,
-               baggingCapacity: car.car.baggingCapacity,
-               rentPrice: car.car.rentPrice,
-               img: car.car.reader.result}
-              }
-              return (dispatch) => {
-                  fetch('http://localhost:3001/cars', {
-                      method: "POST",
-                      headers: {
-                          'Accept': 'application/json',
-                          'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify(carParams)
-                  })
-                      .then( resp => resp.json() )
-                      .then( car => {
-                          dispatch(addCar(car))
-                          history.push('/') // redirects to /
-                      })
-              }
+   const carParams = {
+   car: {
+         make: car.car.make,
+         model: car.car.model,
+         vehicleType: car.car.vehicleType,
+         capacity: car.car.capacity ,
+         baggingCapacity: car.car.baggingCapacity,
+         rentPrice: car.car.rentPrice,
+         img: car.car.reader.result}
+        }
+   return (dispatch) => {
+       fetch('http://localhost:3001/cars', {
+           method: "POST",
+           headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(carParams)
+       })
+           .then( resp => resp.json() )
+           .then( car => {
+               dispatch(addCar(car))
+               history.push('/') // redirects to /
+             })
+     }
           }
   const editCar = car => {
    return {
@@ -74,8 +74,6 @@ export const editCarCard = (carinfo, history) => {
     }
 }
 
-   
-           
 const deleteCar = (car) => {
 
 return {
@@ -94,6 +92,8 @@ export const deleteCarCards = (carId) => {
                 dispatch(deleteCar(car))})
     }
 }
+   
+           
 
 
 

@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom'
 
 
 
-const CarCard = ({ car, deleteCarCards }) => {
-
+const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
+  // debugger
    const handleDelete = () => {
     deleteCarCards(car.id)
       }
@@ -14,11 +14,8 @@ const CarCard = ({ car, deleteCarCards }) => {
       }
 
     return (
-        <Col
-          m={4}
-          s={8}
-          l={4}
-        >
+        <Col m={4} s={8} l={4} >
+        
           <Card
             closeIcon={<Icon>close</Icon>}
             header={<CardTitle image={car.img} reveal waves="light"/>}
@@ -34,16 +31,20 @@ const CarCard = ({ car, deleteCarCards }) => {
                     <h5 className="right e0e0e0 grey lighten-2">{<Icon>attach_money</Icon>} {car.rentPrice} per day</h5>
                     </>
                     <>
-                     
-                    <Button className="yellow right" onClick={handleEdit}  node="a" small  style={{margin:  '10px'  }}   waves="light"    >
+                   { loggedInStatus ? <Button className="yellow right" onClick={handleEdit}  node="a" small  style={{margin:  '10px'  }}   waves="light"    >
                       <Link to={`/cars/${car.id}/edit`}>Edit </Link>
-                    </Button>
+                    </Button> : null }
                 
-                    <Button className="red right"  onClick={handleDelete} node="a" small  style={{margin:  '10px'   }}   waves="light"    >
+                   { loggedInStatus ? <Button className="red right"  onClick={handleDelete} node="a" small  style={{margin:  '10px'   }}   waves="light"    >
                      Delete
-                    </Button>
+                    </Button> : null }
+                    { loggedInStatus ? null : <Button style={{  marginTop: '70px' }} className={'ffa726 orange lighten-1'} >
+                        <Icon right>drive_eta</Icon> RentMe </Button>
+                    }
                   </>
                </>
+  
+
                     }
                     revealIcon={<Icon>more_vert</Icon>}
                     title= {car.make } 
@@ -52,9 +53,13 @@ const CarCard = ({ car, deleteCarCards }) => {
                </Col>
              )
            }
-                        
            
            export default CarCard;
+          
+          
+       
+                        
+           
                         
     
                           
