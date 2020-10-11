@@ -17,7 +17,7 @@ const CarCard = ({ car, deleteCarCards }) => {
         <Col
           m={4}
           s={8}
-          l={3}
+          l={4}
         >
           <Card
             closeIcon={<Icon>close</Icon>}
@@ -34,14 +34,16 @@ const CarCard = ({ car, deleteCarCards }) => {
                     <h5 className="right e0e0e0 grey lighten-2">{<Icon>attach_money</Icon>} {car.rentPrice} per day</h5>
                     </>
                     <>
-                    <Button className="green right" onClick={handleEdit}  node="a" small  style={{margin:  '10px'   }}   waves="light"    >
+                     
+                    <Button className="yellow right" onClick={handleEdit}  node="a" small  style={{margin:  '10px'  }}   waves="light"    >
                       <Link to={`/cars/${car.id}/edit`}>Edit </Link>
                     </Button>
+                
                     <Button className="red right"  onClick={handleDelete} node="a" small  style={{margin:  '10px'   }}   waves="light"    >
                      Delete
                     </Button>
-                        </>
-                    </>
+                  </>
+               </>
                     }
                     revealIcon={<Icon>more_vert</Icon>}
                     title= {car.make } 
