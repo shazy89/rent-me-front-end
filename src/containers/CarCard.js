@@ -5,56 +5,55 @@ import {Link} from 'react-router-dom'
 
 
 const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
-  // debugger
-   const handleDelete = () => {
-    deleteCarCards(car.id)
-      }
-    const  handleEdit = () => {
-     return 
-      }
 
-    return (
-        <Col m={4} s={8} l={4} >
-        
-          <Card
-            closeIcon={<Icon>close</Icon>}
-            header={<CardTitle image={car.img} reveal waves="light"/>}
-            reveal={
-                <>
-                   <ul>
-                   <li>Model {car.model}  </li>
-                   <li> {car.vehicleType} </li>
-                   <li>{<Icon>person</Icon>}{car.capacity} People </li>
-                   <li>{<Icon>work</Icon>}{car.baggingCapacity} Bags</li>
-                   </ul>
-                   <>
-                    <h5 className="right e0e0e0 grey lighten-2">{<Icon>attach_money</Icon>} {car.rentPrice} per day</h5>
-                    </>
-                    <>
-                   { loggedInStatus ? <Button className="yellow right" onClick={handleEdit}  node="a" small  style={{margin:  '10px'  }}   waves="light"    >
-                      <Link to={`/cars/${car.id}/edit`}>Edit </Link>
-                    </Button> : null }
-                
-                   { loggedInStatus ? <Button className="red right"  onClick={handleDelete} node="a" small  style={{margin:  '10px'   }}   waves="light"    >
-                     Delete
-                    </Button> : null }
-                    { loggedInStatus ? null : <Button style={{  marginTop: '70px' }} className={'ffa726 orange lighten-1'} >
-                        <Icon right>drive_eta</Icon> RentMe </Button>
-                    }
-                  </>
-               </>
+ const handleDelete = () => {
+  deleteCarCards(car.id)
+    }
+  const  handleEdit = () => {
+   return 
+    }
+  return (
+  <Col m={4} s={8} l={4} >
+
+    <Card
+      closeIcon={<Icon>close</Icon>}
+      header={<CardTitle image={car.img} reveal waves="light"/>}
+      reveal={
+          <>
+             <ul>
+             <li>Model {car.model}  </li>
+             <li> {car.vehicleType} </li>
+             <li>{<Icon>person</Icon>}{car.capacity} People </li>
+             <li>{<Icon>work</Icon>}{car.baggingCapacity} Bags</li>
+             </ul>
+             <>
+              <h5 className="right e0e0e0 grey lighten-2">{<Icon>attach_money</Icon>} {car.rentPrice} per day</h5>
+              </>
+              <>
+             { loggedInStatus ? <Button className="yellow right" onClick={handleEdit}  node="a" small  style={{margin:  '10px'  }}   waves="light"    >
+                <Link to={`/cars/${car.id}/edit`}>Edit </Link>
+              </Button> : null }
+          
+             { loggedInStatus ? <Button className="red right"  onClick={handleDelete} node="a" small  style={{margin:  '10px'   }}   waves="light"    >
+               Delete
+              </Button> : null }
+              { loggedInStatus ? null : <Button style={{  marginTop: '70px' }} className={'ffa726 orange lighten-1'} >
+                  <Icon right>drive_eta</Icon> RentMe </Button>
+              }
+            </>
+         </>
+          }
+           revealIcon={<Icon>more_vert</Icon>}
+           title= {car.make } 
+           >
+       </Card>
+    </Col>
+   )
+ }
+              
+      export default CarCard;
   
-
-                    }
-                    revealIcon={<Icon>more_vert</Icon>}
-                    title= {car.make } 
-                  >
-                  </Card>
-               </Col>
-             )
-           }
-           
-           export default CarCard;
+  
           
           
        

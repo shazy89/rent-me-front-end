@@ -7,23 +7,30 @@ const NavBar = (props) => {
  
 return (
     <div>
-
   <Navbar alignLinks="right" className="fb8c00 orange darken-1" 
      brand={ <Link className='center' to='/'><Icon>wb_sunny</Icon>RentMe</Link>  } > 
      
-     <NavItem> {props.loggedInStatus ? null : <Link to='/login'>Log In</Link> }</NavItem>
-      <br></br>
-      <NavItem>   {
+   <NavItem> {
+   props.loggedInStatus ? null : <Link to='/login'>Log In</Link> 
+   }
+   </NavItem>
+   
+   <NavItem>  {
           props.loggedInStatus ? null : <Link to='/signup'>Sign Up</Link>
-        } </NavItem> 
-      <br></br>
-     {  props.loggedInStatus ? <NavItem  onClick={props.handleLogOut}>Log Out </NavItem>  : null }
+        } 
+    </NavItem> 
+     {  
+     props.loggedInStatus ? <NavItem  onClick={props.handleLogOut}>Log Out </NavItem>  : null 
+     }
   </Navbar>
- 
     </div>
   );
 };
 export default NavBar;
+ 
+    
+     
+
 
 
 

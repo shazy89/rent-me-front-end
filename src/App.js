@@ -5,13 +5,13 @@ import { Button } from 'react-materialize'
 
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
-import NavBar from './components/NavBar'
+import NavBar from './containers/NavBar'
 import CarForm from './components/rentalcars/CarForm'
 import Admin from './containers/Admin'
 import CarList from './components/rentalcars/CarList'
 import CarEdit from './components/rentalcars/CarEdit'
 import {connect} from 'react-redux'
-
+import SearchCars from './containers/SearchCars'
 
 
 class App extends Component {
@@ -69,6 +69,7 @@ handleLogout = () => {
       return (
         <div >
         <BrowserRouter>
+           <SearchCars />
        < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn} />
        { this.state.isLoggedIn ? <Button className="black"> <Link to="/admin"> Admin User</Link> </Button> : null}
   
@@ -79,7 +80,6 @@ handleLogout = () => {
            <CarList {...props}  loggedInStatus={this.state.isLoggedIn}/>
          )}
        />
-  
   
        <Route 
           exact path='/login' 
@@ -121,6 +121,7 @@ handleLogout = () => {
      }
     }
    export default connect(mapStateToProps)(App);
+  
 
 
 
