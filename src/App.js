@@ -69,13 +69,13 @@ handleLogout = () => {
       return (
         <div >
         <BrowserRouter>
-           <SearchCars />
+
        < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn} />
        { this.state.isLoggedIn ? <Button className="black"> <Link to="/admin"> Admin User</Link> </Button> : null}
-  
+       <SearchCars />
        <Switch>
    
-       <Route exact path='/' 
+       <Route exact path='/carlist' 
           render={props => (
            <CarList {...props}  loggedInStatus={this.state.isLoggedIn}/>
          )}

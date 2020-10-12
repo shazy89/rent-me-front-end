@@ -8,7 +8,7 @@ const NavBar = (props) => {
 return (
     <div>
   <Navbar alignLinks="right" className="fb8c00 orange darken-1" 
-     brand={ <Link className='center' to='/'><Icon>wb_sunny</Icon>RentMe</Link>  } > 
+     brand={ <Link className='left' style={{marginLeft: '120px'}} to='/'><Icon>wb_sunny</Icon>RentMe</Link>  } > 
      
    <NavItem> {
    props.loggedInStatus ? null : <Link to='/login'>Log In</Link> 

@@ -1,5 +1,5 @@
-import React, {  useEffect, useState } from 'react';
-import { DatePicker, Icon, Button } from 'react-materialize';
+import React, { useState } from 'react';
+import { DatePicker, Icon, Button, Carousel, Footer } from 'react-materialize';
 
 const SearchCars = () => {
 
@@ -11,15 +11,18 @@ const SearchCars = () => {
             <h2 className="z-depth-1 center"> RESERVE A VEHICLE</h2>
             
   <div className="center">
-  <DatePicker    
+  <DatePicker 
+
+  onChange={ e => setStartDate(e)}  
+ // value={startDate}
   className="center"     
      style={{width: '20%'}}
-  id="DatePicker-5"
-  value="PICK UP"
+  id="DatePicker-4"
+ // value="PICK UP"
   options={{
     autoClose: false,
     container: null,
-    defaultDate: null,
+    defaultDate:  startDate,
     disableDayFn: null,
     disableWeekends: false,
     events: [],
@@ -89,28 +92,31 @@ const SearchCars = () => {
     },
     isRTL: false,
     maxDate: null,
-    minDate: new Date,
+    minDate: new Date(),
     onClose: null,
     onDraw: null,
     onOpen: null,
     onSelect: null,
     parse: null,
-    setDefaultDate: false,
+    setDefaultDate: true,
     showClearBtn: false,
     showDaysInNextAndPreviousMonths: false,
     showMonthAfterYear: false,
     yearRange: 2
   }}
-> <Icon >date_range</Icon> </DatePicker>
+> PICK-UP<Icon >date_range</Icon> </DatePicker>
  <DatePicker
+
+    onChange={ e => setEndDate(e)}  
+   // value={endDate}
     className="center"
     style={{width: '20%'}}
     id="DatePicker-5"
-    value="RETURN"
+ //   value="RETURN"
     options={{
     autoClose: false,
     container: null,
-    defaultDate: null,
+    defaultDate: endDate,
     disableDayFn: null,
     disableWeekends: false,
     events: [],
@@ -180,23 +186,61 @@ const SearchCars = () => {
     },
     isRTL: false,
     maxDate: null,
-    minDate: new Date,
+    minDate: startDate,
     onClose: null,
     onDraw: null,
     onOpen: null,
     onSelect: null,
     parse: null,
-    setDefaultDate: false,
+    setDefaultDate: true,
     showClearBtn: false,
     showDaysInNextAndPreviousMonths: false,
     showMonthAfterYear: false,
     yearRange: 2
     }}
-    > <Icon >date_range</Icon> </DatePicker>
+    >RETURN <Icon >date_range</Icon> </DatePicker>
     <div>
-     <Button className="right">Check Availability</Button>
+     <Button className="right 2979ff blue accent-3">Check Availability</Button>
      </div>
-    </div>  
+    </div> 
+      <div>
+      <Carousel
+         carouselId="Carousel-2"
+         images={[
+           'https://res.cloudinary.com/dytheecsk/image/upload/v1602332271/cjgrqgrd2sb2sefquwp2.png',
+           'https://res.cloudinary.com/dytheecsk/image/upload/v1602332084/dbmprppnw3liondqotjn.png',
+           'https://res.cloudinary.com/dytheecsk/image/upload/v1602502859/ezthh4kz9eke2zvyjmzf.jpg',
+           'https://res.cloudinary.com/dytheecsk/image/upload/v1602268428/hcgrvhwrs0p0xzl8iioe.png',
+           'https://res.cloudinary.com/dytheecsk/image/upload/v1602189057/sqq8spvsvhzp7dwsvfae.png'
+         ]}
+         options={{
+           dist: -100,
+           duration: 200,
+           fullWidth: false,
+           indicators: false,
+           noWrap: false,
+           numVisible: 5,
+           onCycleTo: null,
+           padding: 0,
+           shift: 0
+         }}
+            /> 
+      </div> 
+  <Footer
+        className="example fb8c00 orange darken-1"
+        copyrights="&copy 2015 Copyright Text"
+        links={<ul><li><a className="grey-text text-lighten-3" href="#!">Link 1</a></li><li><a className="grey-text text-lighten-3" 
+        href="#!">Link 2</a></li><li><a className="grey-text text-lighten-3" 
+         href="#!">Link 3</a></li><li><a className="grey-text text-lighten-3" href="#!">Link 4</a></li></ul>} >
+        moreLinks={<a className="grey-text text-lighten-4 right" href="#!">More Links</a>}
+      
+        <h5 className="white-text">
+        Footer Content
+      </h5>
+        <p className="grey-text text-lighten-4">
+        You can use rows and columns here to organize your footer content.
+      </p>
+  </Footer>
 </div>
     )
     
