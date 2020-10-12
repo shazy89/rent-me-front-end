@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DatePicker, Icon, Button, Carousel, Footer } from 'react-materialize';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { addStartDate, addEndDate } from '../actions/dateActions'
 import { connect } from 'react-redux';
 
@@ -9,10 +9,10 @@ const SearchCars = ({addStartDate, addEndDate}) => {
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
 
-const dateIn = (startDate) => {
+const dateOut = (startDate) => {
     addStartDate(startDate)
 }
-const dateEnd = (endDate) => {
+const dateBack = (endDate) => {
     addEndDate(endDate)
 }
 
@@ -24,15 +24,11 @@ const dateEnd = (endDate) => {
   <div className="center">
 
   <DatePicker 
-
-  onChange={ e => setStartDate(e)}  
-  
- // value={startDate}
-  className="center"     
-     style={{width: '20%'}}
-  id="DatePicker-4"
- // value="PICK UP"
-  options={{
+   onChange={ e => setStartDate(e)}  
+   className="center"     
+   style={{width: '20%'}}
+   id="DatePicker-4"
+   options={{
     autoClose: false,
     container: null,
     defaultDate:  startDate,
@@ -111,7 +107,7 @@ const dateEnd = (endDate) => {
     onClose: null,
     onDraw: null,
     onOpen: null,
-    onSelect: dateIn(startDate),
+    onSelect: dateOut(startDate),
     parse: null,
     setDefaultDate: true,
     showClearBtn: false,
@@ -124,11 +120,9 @@ const dateEnd = (endDate) => {
  <DatePicker
 
     onChange={ e => setEndDate(e)}  
-   // value={endDate}
     className="center"
     style={{width: '20%'}}
     id="DatePicker-5"
- //   value="RETURN"
     options={{
     autoClose: false,
     container: null,
@@ -206,7 +200,7 @@ const dateEnd = (endDate) => {
     onClose: null,
     onDraw: null,
     onOpen: null,
-    onSelect: dateEnd(endDate),
+    onSelect: dateBack(endDate),
     parse: null,
     setDefaultDate: true,
     showClearBtn: false,

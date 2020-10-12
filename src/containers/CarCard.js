@@ -19,10 +19,10 @@ const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
       reveal={
           <>
              <ul>
-             <li>Model {car.model}  </li>
-             <li> {car.vehicleType} </li>
-             <li>{<Icon>person</Icon>}{car.capacity} People </li>
-             <li>{<Icon>work</Icon>}{car.baggingCapacity} Bags</li>
+               <li>Model {car.model}  </li>
+               <li> {car.vehicleType} </li>
+               <li>{<Icon>person</Icon>}{car.capacity} People </li>
+               <li>{<Icon>work</Icon>}{car.baggingCapacity} Bags</li>
              </ul>
              <>
               <h5 className="right e0e0e0 grey lighten-2">{<Icon>attach_money</Icon>} {car.rentPrice} per day</h5>
@@ -36,7 +36,7 @@ const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
                Delete
               </Button> : null }
               { loggedInStatus ? null : <Button style={{  marginTop: '70px' }} className={'ffa726 orange lighten-1'} >
-                  <Icon right>drive_eta</Icon> RentMe </Button>
+                  <Icon right>drive_eta</Icon><Link to={`/cars/${car.id}/book`}>RentME </Link> </Button>
               }
             </>
          </>

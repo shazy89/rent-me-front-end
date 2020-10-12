@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
-import { Button } from 'react-materialize'
+import axios from 'axios';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import { Button } from 'react-materialize';
 
-import Login from './components/auth/Login'
-import Signup from './components/auth/Signup'
-import NavBar from './containers/NavBar'
-import CarForm from './components/rentalcars/CarForm'
-import Admin from './containers/Admin'
-import CarList from './components/rentalcars/CarList'
-import CarEdit from './components/rentalcars/CarEdit'
-import {connect} from 'react-redux'
-import SearchCars from './containers/SearchCars'
+import Login from './components/auth/Login';
+import Signup from './components/auth/Signup';
+import NavBar from './containers/NavBar';
+import CarForm from './components/rentalcars/CarForm';
+import Admin from './containers/Admin';
+import CarList from './components/rentalcars/CarList';
+import CarEdit from './components/rentalcars/CarEdit';
+import Book from './components/bookings/Book';
+import {connect} from 'react-redux';
+import SearchCars from './containers/SearchCars';
 
 
 class App extends Component {
@@ -22,13 +23,11 @@ class App extends Component {
       
       user: {}
      };
-  }
-  getSearchDates = () => {
-    
-  }
+  };
+
 componentDidMount() {
     this.loginStatus()
-  }
+  };
 
 loginStatus = () => {
     axios.get('http://localhost:3001/logged_in', {withCredentials: true})
@@ -40,7 +39,7 @@ loginStatus = () => {
       }
     })
     .catch(error => console.log('api errors:', error))
-  }
+  };
 handleLogin = (data) => {
 
     this.setState({
@@ -48,7 +47,7 @@ handleLogin = (data) => {
       user: data.user
     })
 
-  }
+  };
       
 handleLogout = () => {
     this.setState({
@@ -56,7 +55,7 @@ handleLogout = () => {
     
     user: {}
     })
-  }
+  };
 
   handleLogOut = () => {
     axios.delete('http://localhost:3001/logout', {withCredentials: true})
@@ -65,7 +64,7 @@ handleLogout = () => {
       this.history.push('/')
     })
     .catch(error => console.log(error))
-  }
+  };
 
   render() {
 
@@ -107,6 +106,11 @@ handleLogout = () => {
             <CarEdit {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
             )}
           />
+             <Route exact path='/cars/:id/book'  
+           render={props => (
+             <Book {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
+            )}
+          />
 
             <Route exact path='/cars/new' component={ CarForm } />
      
@@ -116,13 +120,14 @@ handleLogout = () => {
   
        );
      }
-   }
+   };
   
    const mapStateToProps = carsReducer => {
     return {
       cars: carsReducer
      }
-    }
+    };
+
    export default connect(mapStateToProps)(App);
   
 

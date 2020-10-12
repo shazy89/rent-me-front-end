@@ -8,8 +8,8 @@ import {  Row } from 'react-materialize';
 const CarList = ({fetchCars, cars, deleteCarCards, loggedInStatus }) => {
 
   useEffect(() => {fetchCars()},[])
-//debugger
-  const carList = cars.cars.map( car => 
+
+  const carList = cars.map( car => 
   <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} />)
 
    return (
@@ -23,8 +23,12 @@ const CarList = ({fetchCars, cars, deleteCarCards, loggedInStatus }) => {
  }
 
  const mapStateToProps = carsReducer => {
+
    return {
-     cars: carsReducer
+     cars: carsReducer.cars,
+     startDate: carsReducer.dates.startDate,
+     endDate: carsReducer.dates.endDate
+
     }
    }
 
