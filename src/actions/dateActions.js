@@ -1,20 +1,13 @@
 
-//const startDay = (date) => {
-//    debugger
-
-//}
-//
 export const addStartDate = (startDate) => {
-    debugger    
- return {
-    type: "ADD_START_DATE",
-     startDate
-   };
+
+    return (dispatch) => {
+        dispatch({type: 'ADD_START_DATE', startDate})
+    }
 }
-//export const addEndDate = (endDate) => {
-//
-//    return {
-//        type: "ADD_END_DATE",
-//        endDate
-//    }
-//} 
+export const addEndDate = (endDate) => {
+
+    return (dispatch) => {
+        dispatch({type: 'ADD_END_DATE', endDate})
+    }
+}

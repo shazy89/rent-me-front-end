@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { DatePicker, Icon, Button, Carousel, Footer } from 'react-materialize';
 import {Link} from 'react-router-dom'
-import { addStartDate } from '../actions/dateActions'
+import { addStartDate, addEndDate } from '../actions/dateActions'
 import { connect } from 'react-redux';
 
-const SearchCars = ({addStartDate}) => {
+const SearchCars = ({addStartDate, addEndDate}) => {
 
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
 
-const carts = (startDate, endDate) => {
+const dateIn = (startDate) => {
     addStartDate(startDate)
+}
+const dateEnd = (endDate) => {
+    addEndDate(endDate)
 }
 
     
@@ -19,7 +22,7 @@ const carts = (startDate, endDate) => {
   <h2 className="z-depth-1 center"> RESERVE A VEHICLE</h2>
   
   <div className="center">
-<Button onClick={carts(startDate)}></Button>
+
   <DatePicker 
 
   onChange={ e => setStartDate(e)}  
@@ -108,7 +111,7 @@ const carts = (startDate, endDate) => {
     onClose: null,
     onDraw: null,
     onOpen: null,
-    onSelect: null,
+    onSelect: dateIn(startDate),
     parse: null,
     setDefaultDate: true,
     showClearBtn: false,
@@ -203,7 +206,7 @@ const carts = (startDate, endDate) => {
     onClose: null,
     onDraw: null,
     onOpen: null,
-    onSelect: null,
+    onSelect: dateEnd(endDate),
     parse: null,
     setDefaultDate: true,
     showClearBtn: false,
@@ -259,10 +262,6 @@ const carts = (startDate, endDate) => {
     
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        addStartDate: (startDate) => dispatch(addStartDate(startDate))
-    }
-}
 
-export default connect(null, mapDispatchToProps)(SearchCars);
+
+export default connect(null, {addStartDate, addEndDate})(SearchCars);
