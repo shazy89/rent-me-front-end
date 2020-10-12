@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import { Button } from 'react-materialize';
-
+import { fetchCars } from './actions/carActions';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import NavBar from './containers/NavBar';
@@ -27,6 +27,7 @@ class App extends Component {
 
 componentDidMount() {
     this.loginStatus()
+    this.props.fetchCars()
   };
 
 loginStatus = () => {
@@ -74,9 +75,13 @@ handleLogout = () => {
 
        < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn} />
        { this.state.isLoggedIn ? <Button className="black"> <Link to="/admin"> Admin User</Link> </Button> : null}
-       <SearchCars />
        <Switch>
-   
+
+       <Route exact path="/"
+          render={props => (
+           <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/>
+        )} />
+        
        <Route exact path='/carlist' 
           render={props => (
            <CarList {...props}  loggedInStatus={this.state.isLoggedIn}/>
@@ -102,15 +107,16 @@ handleLogout = () => {
             )}
           />
              <Route exact path='/cars/:id/edit'  
-           render={props => (
-            <CarEdit {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
+                render={props => (
+               <CarEdit {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
             )}
           />
-             <Route exact path='/cars/:id/book'  
-           render={props => (
-             <Book {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
-            )}
-          />
+            <Route exact path='/cars/:id/book'  
+               render={props => (
+               <Book {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
+                )}
+            />
+
 
             <Route exact path='/cars/new' component={ CarForm } />
      
@@ -128,7 +134,7 @@ handleLogout = () => {
      }
     };
 
-   export default connect(mapStateToProps)(App);
+   export default connect(mapStateToProps, {fetchCars})(App);
   
 
 

@@ -19,7 +19,7 @@ const Book = ({history, match, fetchCars, loggedInStatus }) => {
 debugger    
     return (
         <div>
-            <InfoBookCard car={car}/>
+            <InfoBookCard car={car} dates={fetchCars.dates}/>
         </div>
     )
 }

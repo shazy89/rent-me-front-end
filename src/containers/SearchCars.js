@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DatePicker, Icon, Button, Carousel, Footer } from 'react-materialize';
 import { Link } from 'react-router-dom'
 import { addStartDate, addEndDate } from '../actions/dateActions'
 import { connect } from 'react-redux';
 
-const SearchCars = ({addStartDate, addEndDate}) => {
+const SearchCars = (props) => {
 
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
 
-const dateOut = (startDate) => {
-    addStartDate(startDate)
-}
-const dateBack = (endDate) => {
-    addEndDate(endDate)
+const stDate = (e) => {
+  e.preventDefault()
+  props.addStartDate(startDate, props.history)
+  props.addEndDate(endDate, props.history)
 }
 
-    
-    return (
-<div className="container">
-  <h2 className="z-depth-1 center"> RESERVE A VEHICLE</h2>
-  
+   return (
+     
+     <div className="container">
+    <h2 className="z-depth-1 center"> RESERVE A VEHICLE</h2>
   <div className="center">
+  
 
   <DatePicker 
    onChange={ e => setStartDate(e)}  
+   
    className="center"     
    style={{width: '20%'}}
    id="DatePicker-4"
@@ -107,7 +107,7 @@ const dateBack = (endDate) => {
     onClose: null,
     onDraw: null,
     onOpen: null,
-    onSelect: dateOut(startDate),
+    onSelect: null ,
     parse: null,
     setDefaultDate: true,
     showClearBtn: false,
@@ -123,6 +123,7 @@ const dateBack = (endDate) => {
     className="center"
     style={{width: '20%'}}
     id="DatePicker-5"
+
     options={{
     autoClose: false,
     container: null,
@@ -200,7 +201,7 @@ const dateBack = (endDate) => {
     onClose: null,
     onDraw: null,
     onOpen: null,
-    onSelect: dateBack(endDate),
+    onSelect: null,
     parse: null,
     setDefaultDate: true,
     showClearBtn: false,
@@ -209,10 +210,10 @@ const dateBack = (endDate) => {
     yearRange: 2
     }}
     >RETURN <Icon >date_range</Icon> </DatePicker>
-    <div>
-      <Button  className="right 009688 teal" ><Link to='/carlist' style={{color: 'white'}}>Check Availability</Link></Button> 
-     </div>
     </div> 
+    <div>
+      <Button  className="right 009688 teal" onClick={e => stDate(e)} style={{color: 'white'}} >  Check Availability</Button> 
+     </div>
       <div>
       <Carousel
          carouselId="Carousel-2"
@@ -236,21 +237,7 @@ const dateBack = (endDate) => {
          }}
             /> 
       </div> 
-  <Footer
-        className="example fb8c00 orange darken-1"
-        copyrights="&copy 2015 Copyright Text"
-        links={<ul><li><a className="grey-text text-lighten-3" href="#!">Link 1</a></li><li><a className="grey-text text-lighten-3" 
-        href="#!">Link 2</a></li><li><a className="grey-text text-lighten-3" 
-         href="#!">Link 3</a></li><li><a className="grey-text text-lighten-3" href="#!">Link 4</a></li></ul>} >
-        moreLinks={<a className="grey-text text-lighten-4 right" href="#!">More Links</a>}
-      
-        <h5 className="white-text">
-        Footer Content
-      </h5>
-        <p className="grey-text text-lighten-4">
-        You can use rows and columns here to organize your footer content.
-      </p>
-  </Footer>
+ 
 </div>
     )
     
@@ -258,4 +245,4 @@ const dateBack = (endDate) => {
 
 
 
-export default connect(null, {addStartDate, addEndDate})(SearchCars);
+export default connect(null, { addStartDate, addEndDate })(SearchCars);

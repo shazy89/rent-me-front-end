@@ -1,16 +1,15 @@
 import React, {  useEffect } from 'react';
 import CarCard from '../../containers/CarCard';
 import {connect} from 'react-redux';
-import { fetchCars, deleteCarCards } from '../../actions/carActions';
+import {  deleteCarCards } from '../../actions/carActions';
 import {  Row } from 'react-materialize';
 
 
-const CarList = ({fetchCars, cars, deleteCarCards, loggedInStatus }) => {
+const CarList = ({ cars, deleteCarCards, loggedInStatus }) => {
 
-  useEffect(() => {fetchCars()},[])
 
-  const carList = cars.map( car => 
-  <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} />)
+
+  const carList = cars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
 
    return (
        <div className="container">
@@ -32,7 +31,7 @@ const CarList = ({fetchCars, cars, deleteCarCards, loggedInStatus }) => {
     }
    }
 
-   export default connect(mapStateToProps, { fetchCars, deleteCarCards })(CarList);
+   export default connect(mapStateToProps, { deleteCarCards })(CarList);
  
  
  
