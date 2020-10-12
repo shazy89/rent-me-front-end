@@ -23,6 +23,9 @@ class App extends Component {
       user: {}
      };
   }
+  getSearchDates = () => {
+    
+  }
 componentDidMount() {
     this.loginStatus()
   }

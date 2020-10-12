@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DatePicker, Icon, Button, Carousel, Footer } from 'react-materialize';
+import {Link} from 'react-router-dom'
+import { addStartDate } from '../actions/dateActions'
+import { connect } from 'react-redux';
 
-const SearchCars = () => {
+const SearchCars = ({addStartDate}) => {
 
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
 
+const carts = (startDate, endDate) => {
+    addStartDate(startDate)
+}
+
+    
     return (
-        <div className="container">
-            <h2 className="z-depth-1 center"> RESERVE A VEHICLE</h2>
-            
+<div className="container">
+  <h2 className="z-depth-1 center"> RESERVE A VEHICLE</h2>
+  
   <div className="center">
+<Button onClick={carts(startDate)}></Button>
   <DatePicker 
 
   onChange={ e => setStartDate(e)}  
+  
  // value={startDate}
   className="center"     
      style={{width: '20%'}}
@@ -90,9 +100,11 @@ const SearchCars = () => {
         'Sat'
       ]
     },
+
     isRTL: false,
     maxDate: null,
     minDate: new Date(),
+    onChange: null,
     onClose: null,
     onDraw: null,
     onOpen: null,
@@ -103,6 +115,7 @@ const SearchCars = () => {
     showDaysInNextAndPreviousMonths: false,
     showMonthAfterYear: false,
     yearRange: 2
+ 
   }}
 > PICK-UP<Icon >date_range</Icon> </DatePicker>
  <DatePicker
@@ -200,7 +213,7 @@ const SearchCars = () => {
     }}
     >RETURN <Icon >date_range</Icon> </DatePicker>
     <div>
-     <Button className="right 2979ff blue accent-3">Check Availability</Button>
+      <Button  className="right 009688 teal" ><Link to='/carlist' style={{color: 'white'}}>Check Availability</Link></Button> 
      </div>
     </div> 
       <div>
@@ -246,4 +259,10 @@ const SearchCars = () => {
     
 }
 
-export default SearchCars;
+const mapDispatchToProps = (dispatch) => {
+    return{
+        addStartDate: (startDate) => dispatch(addStartDate(startDate))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SearchCars);

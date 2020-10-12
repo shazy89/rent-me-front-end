@@ -9,9 +9,7 @@ const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
  const handleDelete = () => {
   deleteCarCards(car.id)
     }
-  const  handleEdit = () => {
-   return 
-    }
+
   return (
   <Col m={4} s={8} l={4} >
 
@@ -30,7 +28,7 @@ const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
               <h5 className="right e0e0e0 grey lighten-2">{<Icon>attach_money</Icon>} {car.rentPrice} per day</h5>
               </>
               <>
-             { loggedInStatus ? <Button className="yellow right" onClick={handleEdit}  node="a" small  style={{margin:  '10px'  }}   waves="light"    >
+             { loggedInStatus ? <Button className="yellow right"  node="a" small  style={{margin:  '10px'  }}   waves="light"    >
                 <Link to={`/cars/${car.id}/edit`}>Edit </Link>
               </Button> : null }
           
