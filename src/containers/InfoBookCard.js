@@ -4,13 +4,13 @@ import { Row, Col, Card, Icon, CardTitle } from 'react-materialize';
 
 
 
-const InfoBookCard = ({ car, dates }) => {
+const InfoBookCard = ({ car, startDate, endDate }) => {
 
     const [totalCost, setTotalCost] = useState("")
     const [totalBookDays, setTotalBookDays] = useState("")
 
 const handleTotalCoast = () => {
-    let daysInTime = dates.endDate.getTime() - dates.startDate.getTime();
+    let daysInTime = endDate.getTime() - startDate.getTime();
     let totalDays = daysInTime / (1000 * 3600 * 24);
     let total = Math.ceil(totalDays) * car.rentPrice
     setTotalCost(total)
@@ -38,8 +38,8 @@ useEffect(() => {
                     <p>{`capacity: ${car.capacity}`}</p>
                     <p>{`Bags: ${car.baggingCapacity}`}</p>
                     <p>Total Days: {totalBookDays}</p><br/>
-                    <p>{dates.startDate.toDateString()}</p>
-                    <p>{dates.endDate.toDateString()} </p>
+                    <p>{startDate.toDateString()}</p>
+                    <p>{endDate.toDateString()} </p>
                     <h6>Estimated Total <span className="right"><h5>$ {totalCost}.00</h5></span> </h6>
                  
                 </Card>

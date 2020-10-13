@@ -11,7 +11,7 @@ import Admin from './containers/Admin';
 import CarList from './components/rentalcars/CarList';
 import CarEdit from './components/rentalcars/CarEdit';
 import Book from './components/bookings/Book';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import SearchCars from './containers/SearchCars';
 
 
@@ -68,23 +68,23 @@ handleLogout = () => {
   };
 
   render() {
-
+      
       return (
         <div >
         <BrowserRouter>
 
        < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn} />
-       { this.state.isLoggedIn ? <Button className="black"> <Link to="/admin"> Admin User</Link> </Button> : null}
+       { this.state.isLoggedIn ? <Admin /> : null}
        <Switch>
 
        <Route exact path="/"
           render={props => (
-           <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/>
+           <SearchCars {...props}  loading={this.props.loading} loggedInStatus={this.state.isLoggedIn}/>
         )} />
         
        <Route exact path='/carlist' 
           render={props => (
-           <CarList {...props}  loggedInStatus={this.state.isLoggedIn}/>
+           <CarList {...props} fetchCars={this.props.cars} loading={this.props.loading} loggedInStatus={this.state.isLoggedIn}/>
          )}
        />
   
@@ -100,12 +100,8 @@ handleLogout = () => {
             <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
           )}
         />
-          <Route 
-          exact path='/admin' 
-          render={props => (
-            <Admin {...props} loggedInStatus={this.state.isLoggedIn}/>
-            )}
-          />
+
+
              <Route exact path='/cars/:id/edit'  
                 render={props => (
                <CarEdit {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
@@ -113,7 +109,7 @@ handleLogout = () => {
           />
             <Route exact path='/cars/:id/book'  
                render={props => (
-               <Book {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
+               <Book {...props} fetchCars={this.props.cars} loading={this.props.loading} startDate={this.props.startDate} endDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/>
                 )}
             />
             <Route exact path='/cars/new' component={ CarForm } />
@@ -127,8 +123,12 @@ handleLogout = () => {
    };
   
    const mapStateToProps = carsReducer => {
+
     return {
-      cars: carsReducer
+      cars: carsReducer.cars.cars,
+      loading: carsReducer.cars.loading,
+      startDate: carsReducer.dates.startDate,
+      endDate: carsReducer.dates.endDate
      }
     };
 
@@ -137,7 +137,12 @@ handleLogout = () => {
 
   
 
-
+  // <Route 
+  // exact path='/admin' 
+  // render={props => (
+  //   <Admin {...props} loggedInStatus={this.state.isLoggedIn}/>
+  //   )}
+  // />
 
           
    

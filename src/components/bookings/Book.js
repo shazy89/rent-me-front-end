@@ -1,26 +1,44 @@
 import React, { useState } from 'react';
-
-import { TextInput, Button, Icon } from 'react-materialize';
-import { Link } from 'react-router-dom'
+import { TextInput, Button, Icon, Row, Col, Preloader  } from 'react-materialize';
 import InfoBookCard from '../../containers/InfoBookCard';
 
 
-const Book = ({history, match, fetchCars, loggedInStatus }) => {
 
-    const [startDate, setStartDate] = useState("")
-    const [endDate, setEndDate] = useState("")
+
+const Book = ({ loading, match, fetchCars, startDate, endDate }) => {
+
+    const [bookStartDate, setBookStartDate] = useState(null)
+    const [bookEndDate, setBookEndDate] = useState(null)
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
     const [emailAdress, setEmailAdress] = useState("")
     const [carId, setCarId] = useState("")
+    
 
-    const car = fetchCars.cars.find(car => car.id === parseInt(match.params.id, 10))
-   
+    const car = fetchCars.find(car => car.id === parseInt(match.params.id, 10))
+      
+    
+    if (loading) {
+        return (
+            <Row className="center">
+               <Col s={4}>
+                   <Preloader   active color="blue" flashing={false} size="big" />
+                 </Col>
+                 <Col s={4}> 
+                    <Preloader   active  color="blue"  flashing  />
+                 </Col>
+                 <Col s={4}>
+                    <Preloader    active color="blue"  flashing={false} size="small" />
+                 </Col>     
+            </Row>
+        )
+    }
+  
     return (
         <div>
             <div>
-              <InfoBookCard car={car} dates={fetchCars.dates}/>
+                <InfoBookCard car={car} startDate={startDate} endDate={endDate}/> 
             </div>
             <div className="container">
                  <p >* Required to complete your reservation</p>
@@ -36,7 +54,7 @@ const Book = ({history, match, fetchCars, loggedInStatus }) => {
                     name="contact_mail" type="text" value={emailAdress} onChange={e => setEmailAdress(e.target.value)} />
 
                 <Button placeholder="submit" type="submit" node="button" waves="light"
-                        className="waves-effect orange btn" > <Icon right> check</Icon> Submit </Button>
+                        className="waves-effect orange btn right"  > <Icon right> check</Icon> Submit </Button>
                </form>
             </div>
 
@@ -45,6 +63,7 @@ const Book = ({history, match, fetchCars, loggedInStatus }) => {
 }
            
               
+export default Book;
               
              
                 
@@ -55,5 +74,3 @@ const Book = ({history, match, fetchCars, loggedInStatus }) => {
 
  
 
-
-export default Book;
