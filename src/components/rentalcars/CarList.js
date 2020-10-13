@@ -7,31 +7,22 @@ import {  Row } from 'react-materialize';
 
 const CarList = ({ fetchCars, deleteCarCards, loggedInStatus }) => {
 
-
-
   const carList = fetchCars.map( car =>  <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} />)
     
+  return (
+      <div className="container">
+        <Row>
+          { carList } 
+        </Row>
+
+      </div>
+  )
+}
+
+  export default connect(null, {  deleteCarCards })(CarList);
+
+
   
-   return (
-       <div className="container">
-         <Row>
-           { carList } 
-         </Row>
-
-       </div>
-   )
- }
-
-// const mapStateToProps = carsReducer => {
-//
-//   return {
-//     cars: carsReducer.cars.cars,
-
-//
-//    }
-//   }
-
-   export default connect(null, {  deleteCarCards })(CarList);
  
  
  

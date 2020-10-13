@@ -47,7 +47,7 @@ export const createCar = (car, history) => {
                history.push('/carlist') 
              })
      }
-          }
+ }
   const editCar = car => {
    return {
        type: 'EDIT_CAR',

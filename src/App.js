@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Button } from 'react-materialize';
 import { fetchCars } from './actions/carActions';
 import Login from './components/auth/Login';
@@ -13,17 +13,17 @@ import CarEdit from './components/rentalcars/CarEdit';
 import Book from './components/bookings/Book';
 import { connect } from 'react-redux';
 import SearchCars from './containers/SearchCars';
-
+import Loading from './containers/Loading'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
       isLoggedIn: false,
-      
       user: {}
      };
   };
+      
 
 componentDidMount() {
     this.loginStatus()
@@ -67,8 +67,8 @@ handleLogout = () => {
     .catch(error => console.log(error))
   };
 
+  
   render() {
-      
       return (
         <div >
         <BrowserRouter>
@@ -83,8 +83,9 @@ handleLogout = () => {
         )} />
         
        <Route exact path='/carlist' 
-          render={props => (
-           <CarList {...props} fetchCars={this.props.cars} loading={this.props.loading} loggedInStatus={this.state.isLoggedIn}/>
+          render={props => ( this.props.loading ? <Loading /> : <CarList {...props} fetchCars={this.props.cars} loading={this.props.loading} 
+            loggedInStatus={this.state.isLoggedIn}/>
+    
          )}
        />
   
@@ -100,15 +101,14 @@ handleLogout = () => {
             <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
           )}
         />
-
              <Route exact path='/cars/:id/edit'  
-                render={props => (
-               <CarEdit {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
-            )}
-          />
+                render={props => ( this.props.loading ? <Loading /> : <CarEdit {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
+                  )}
+                />
             <Route exact path='/cars/:id/book'  
                render={props => (
-               <Book {...props} fetchCars={this.props.cars} loading={this.props.loading} startDate={this.props.startDate} endDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/>
+               <Book {...props} fetchCars={this.props.cars} bookStartDate={this.props.startDate} 
+               bookEndDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/>
                 )}
             />
             <Route exact path='/cars/new' component={ CarForm } />
@@ -120,8 +120,6 @@ handleLogout = () => {
        );
      }
    };
-
-  
    const mapStateToProps = carsReducer => {
 
     return {
@@ -133,16 +131,13 @@ handleLogout = () => {
     };
 
    export default connect(mapStateToProps, {fetchCars})(App);
-
+   
+               
 
   
 
-  // <Route 
-  // exact path='/admin' 
-  // render={props => (
-  //   <Admin {...props} loggedInStatus={this.state.isLoggedIn}/>
-  //   )}
-  // />
+
+  
 
           
    
