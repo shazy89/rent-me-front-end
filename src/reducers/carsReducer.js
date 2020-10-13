@@ -9,14 +9,25 @@ export default (state={cars: [], loading: true }, action) => {
        
         case "ADD_CAR":
             return {...state, 
-                    cars: [...state, action.car],
+                    cars: [...state.cars, action.car],
                     loading: false };
         case 'DELETE_CAR':
-            const cars = state.cars.filter(car => car.id !== action.car.id);
-              return cars;
+  
+            let cars = state.cars.filter(car => car.id !== action.car.id )
+            return {...state, cars: cars,
+                    loading: false };
+
         case 'EDIT_CAR':
-            let cars1 = state.cars.map(car => car.id === action.car.id);
-            return cars1;
+     
+            let cars1 = state.cars.map(car => {
+                if(car.id === action.car.id) {
+                    return action.car
+                } else {
+                    return car
+                }
+            }); 
+            return {...state, cars: cars1,
+                    loading: false };
             
             default:
                 return state;

@@ -44,7 +44,7 @@ export const createCar = (car, history) => {
            .then( resp => resp.json() )
            .then( car => {
                dispatch(addCar(car))
-               history.push('/') // redirects to /
+               history.push('/carlist') 
              })
      }
           }
@@ -69,7 +69,7 @@ export const editCarCard = (carinfo, history) => {
             .then( resp => resp.json() )
             .then( car => { 
                 dispatch(editCar(car))
-                history.push('/') // redirects to /
+                history.push('/carlist') 
             })
     }
 }

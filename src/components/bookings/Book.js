@@ -7,8 +7,8 @@ import InfoBookCard from '../../containers/InfoBookCard';
 
 const Book = ({ loading, match, fetchCars, startDate, endDate }) => {
 
-    const [bookStartDate, setBookStartDate] = useState(null)
-    const [bookEndDate, setBookEndDate] = useState(null)
+    const [bookStartDate, setBookStartDate] = useState("")
+    const [bookEndDate, setBookEndDate] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
@@ -18,7 +18,10 @@ const Book = ({ loading, match, fetchCars, startDate, endDate }) => {
 
     const car = fetchCars.find(car => car.id === parseInt(match.params.id, 10))
       
-    
+    const  handleSubmit = (e, car) => {
+         
+    }
+
     if (loading) {
         return (
             <Row className="center">

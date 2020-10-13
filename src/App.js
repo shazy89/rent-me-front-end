@@ -101,7 +101,6 @@ handleLogout = () => {
           )}
         />
 
-
              <Route exact path='/cars/:id/edit'  
                 render={props => (
                <CarEdit {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
@@ -121,6 +120,7 @@ handleLogout = () => {
        );
      }
    };
+
   
    const mapStateToProps = carsReducer => {
 
