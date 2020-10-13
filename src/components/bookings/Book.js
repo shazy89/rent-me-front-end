@@ -16,7 +16,7 @@ const Book = ({history, match, fetchCars, loggedInStatus }) => {
     const [carId, setCarId] = useState("")
 
     const car = fetchCars.cars.find(car => car.id === parseInt(match.params.id, 10))
-debugger    
+   
     return (
         <div>
             <InfoBookCard car={car} dates={fetchCars.dates}/>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Row, Col, Card, Icon, CardTitle } from 'react-materialize';
 
@@ -6,10 +6,20 @@ import { Row, Col, Card, Icon, CardTitle } from 'react-materialize';
 
 const InfoBookCard = ({ car, dates }) => {
 
-    const [startDate, setStartDate] = useState("")
+    const [totalCost, setTotalCost] = useState("")
+    const [totalBookDays, setTotalBookDays] = useState("")
 
+const handleTotalCoast = () => {
+    let daysInTime = dates.endDate.getTime() - dates.startDate.getTime();
+    let totalDays = daysInTime / (1000 * 3600 * 24);
+    let total = Math.ceil(totalDays) * car.rentPrice
+    setTotalCost(total)
+    setTotalBookDays(totalDays)
+}
+useEffect(() => {
+    handleTotalCoast()
+})
 
-debugger    
     return (
         <div>
             <Row>
@@ -18,15 +28,18 @@ debugger
                 s={12}
               >
                 <Card
-                  actions={[
-                    <a key="1" href="#">This is a link</a>
-                  ]}
                   closeIcon={<Icon>close</Icon>}
-                  header={<CardTitle image="https://materializecss.com/images/sample-1.jpg" />}
+                  header={<CardTitle image={car.img} />}
                   horizontal
                   revealIcon={<Icon>more_vert</Icon>}
                 >
-                  Here is the standard card with a horizontal image.
+                  <h4>{`${car.make} - ${car.model}`}</h4>
+                <p>{`${car.vehicleType}`}</p>
+                <p>{`capacity: ${car.capacity}`}</p>
+                <p>{`Bags: ${car.baggingCapacity}`}</p>
+                <p>Total Days: {totalBookDays}</p><br/>
+                <h6>Estimated Total <span className="right"><h5>$ {totalCost}.00</h5></span> </h6>
+                 
                 </Card>
               </Col>
             </Row>

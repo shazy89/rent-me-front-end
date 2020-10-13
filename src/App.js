@@ -116,8 +116,6 @@ handleLogout = () => {
                <Book {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
                 )}
             />
-
-
             <Route exact path='/cars/new' component={ CarForm } />
      
       </Switch>
@@ -135,6 +133,8 @@ handleLogout = () => {
     };
 
    export default connect(mapStateToProps, {fetchCars})(App);
+
+
   
 
 
