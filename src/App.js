@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Button } from 'react-materialize';
+//import { Button } from 'react-materialize';
 import { fetchCars } from './actions/carActions';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';

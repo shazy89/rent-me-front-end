@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {  Icon, TextInput, Select, Row, Col, Preloader } from 'react-materialize'
+import {  Icon, TextInput, Select } from 'react-materialize'
 import { editCarCard } from '../../actions/carActions'
 import {connect} from 'react-redux'
 

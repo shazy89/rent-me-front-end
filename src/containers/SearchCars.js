@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { DatePicker, Icon, Button, Carousel, Footer } from 'react-materialize';
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { DatePicker, Icon, Button, Carousel } from 'react-materialize';
+//import { Link } from 'react-router-dom'
 import { addStartDate, addEndDate } from '../actions/dateActions'
 import { connect } from 'react-redux';
 
