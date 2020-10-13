@@ -197,7 +197,7 @@ const stDate = (e) => {
     },
     isRTL: false,
     maxDate: null,
-    minDate: startDate,
+    minDate: startDate ,
     onClose: null,
     onDraw: null,
     onOpen: null,

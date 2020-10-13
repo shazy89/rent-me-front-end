@@ -33,12 +33,14 @@ useEffect(() => {
                   horizontal
                   revealIcon={<Icon>more_vert</Icon>}
                 >
-                  <h4>{`${car.make} - ${car.model}`}</h4>
-                <p>{`${car.vehicleType}`}</p>
-                <p>{`capacity: ${car.capacity}`}</p>
-                <p>{`Bags: ${car.baggingCapacity}`}</p>
-                <p>Total Days: {totalBookDays}</p><br/>
-                <h6>Estimated Total <span className="right"><h5>$ {totalCost}.00</h5></span> </h6>
+                    <h4>{`${car.make} - ${car.model}`}</h4>
+                    <p>{`${car.vehicleType}`}</p>
+                    <p>{`capacity: ${car.capacity}`}</p>
+                    <p>{`Bags: ${car.baggingCapacity}`}</p>
+                    <p>Total Days: {totalBookDays}</p><br/>
+                    <p>{dates.startDate.toDateString()}</p>
+                    <p>{dates.endDate.toDateString()} </p>
+                    <h6>Estimated Total <span className="right"><h5>$ {totalCost}.00</h5></span> </h6>
                  
                 </Card>
               </Col>
