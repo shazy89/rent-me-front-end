@@ -4,7 +4,7 @@ export default (state={
   
      switch (action.type) {
          case "ADD_BOOK":
-             debugger
+   
             return {...state, 
                 cars: [...state.bookings, action.book],
                 loading: false };
