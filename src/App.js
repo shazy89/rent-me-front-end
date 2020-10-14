@@ -84,7 +84,7 @@ handleLogout = () => {
         
        <Route exact path='/carlist' 
           render={props => ( this.props.loading ? <Loading /> : <CarList {...props} fetchCars={this.props.cars} loading={this.props.loading} 
-            loggedInStatus={this.state.isLoggedIn}/>
+            loggedInStatus={this.state.isLoggedIn} bookStartDate={this.props.startDate} bookEndDate={this.props.endDate}/>
     
          )}
        />
