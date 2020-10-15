@@ -9,7 +9,7 @@ import {  Row } from 'react-materialize';
 const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, bookEndDate  }) => {
 
    useEffect(() => {
-     handleCarList(fetchCars)
+//     handleCarList(fetchCars)
      
    })
 
@@ -27,33 +27,38 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
       }
       return days
    } 
-// const handleCarBookedDates = (fetchCars) => {
-//      
-//    let handleBookings = fetchCars.map(car => car.books.flat());
-//    let tryIfWorks = handleBookings.map(book =>  book.map(info => getSearchDates(info.startDate, info.endDate))
-//    );
-//  
-//    
-//       debugger
-//    return handleBookings
-// }
- 
+//const handleCarBookedDates = (fetchCars) => {
+//     
+//   let handleBookings = fetchCars.map(car => car.books.flat());
+//   let tryIfWorks = handleBookings.map(book =>  book.map(info => { 
+//       return getSearchDates(info.startDate, info.endDate).forEach(element => {debugger})} 
+//   ) 
+//  );
+// 
+//   
+//      debugger
+//   return handleBookings
+//}
+
   const handleCarList = fetchCars => {
         let condition = fetchCars.map(car => car.books).flat()
-        handleCarBookedDates(fetchCars)
-         if(condition.length !== 0){
-            let dates = getSearchDates(bookStartDate, bookEndDate).map(date => date.getTime())
-            let books = fetchCars.map(car => {
-            return car.books.filter(book => { 
-            return !dates.includes(new Date(book.startDate).getTime())
-            })
-        }).flat()
-            let bookingIds = books.map(book => parseInt(book.car_id))
-            let listCars =  fetchCars.filter(car => bookingIds.includes(car.id))
-            return listCars
-           } else {
+//        handleCarBookedDates(fetchCars)
+      //   if(condition.length !== 0){
+      //      let dates = getSearchDates(bookStartDate, bookEndDate).map(date => date.getTime())
+      //      let books = fetchCars.map(car => {
+      //         car.books.filter(book => { 
+      //         getSearchDates(book.startDate, book.endDate).forEach(element => { 
+      //           return !dates.includes(element.getTime()) 
+      //        })
+      //      })
+      //  }).flat()
+      //          
+      //      let bookingIds = books.map(book => parseInt(book.car_id))
+      //      let listCars =  fetchCars.filter(car => bookingIds.includes(car.id))
+      //      return listCars
+      //     } else {
             return fetchCars
-          }
+       //   }
   };
   
   const carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
