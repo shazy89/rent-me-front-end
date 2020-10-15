@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import CarCard from '../../containers/CarCard';
 import {connect} from 'react-redux';
 
@@ -7,11 +7,6 @@ import {  Row } from 'react-materialize';
 
 
 const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, bookEndDate  }) => {
-
-   useEffect(() => {
-//     handleCarList(fetchCars)
-     
-   })
 
   const getSearchDates = (stDaye, endDate ) => {
       let std = new Date(stDaye)
@@ -63,25 +58,25 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
           }
      };
 
+     let carList;
+    loggedInStatus ?  carList = fetchCars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> ) :
+    carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
+  
+ debugger
+    return (
+        <div className="container">
+          <Row>
+            { carList } 
+          </Row>
+        </div>
+    )
+  }
+  
+  
+    export default connect(null, {  deleteCarCards })(CarList);
         
 
    
-    let carList;
-   loggedInStatus ?  carList = fetchCars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> ) :
-   carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
- 
-
-   return (
-       <div className="container">
-         <Row>
-           { carList } 
-         </Row>
- 
-       </div>
-   )
- }
- 
-   export default connect(null, {  deleteCarCards })(CarList);
          
              
  

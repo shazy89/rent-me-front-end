@@ -74,7 +74,7 @@ handleLogout = () => {
         <BrowserRouter>
 
        < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn} />
-       { this.state.isLoggedIn ? <Admin /> : null}
+       { this.state.isLoggedIn ? <Admin loggedInStatus={this.state.isLoggedIn}/> : null}
        <Switch>
 
        <Route exact path="/"
@@ -107,9 +107,10 @@ handleLogout = () => {
                   )}
                 />
             <Route exact path='/cars/:id/book'  
-               render={props => (
+               render={props => ( this.props.startDate ? 
                <Book {...props} fetchCars={this.props.cars} bookStartDate={this.props.startDate} 
-               bookEndDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/>
+               bookEndDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/> :
+               <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/> 
                 )}
             />
             <Route exact path='/cars/new' component={ CarForm } />
