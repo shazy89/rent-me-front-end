@@ -8,12 +8,28 @@ const SearchCars = (props) => {
 
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
+    const [nextDay, setNextDay] = useState()
 
 const stDate = (e) => {
   e.preventDefault()
   props.addStartDate(startDate, props.history)
   props.addEndDate(endDate, props.history)
+
 }
+
+const startDateSearch = (e) => {
+  setStartDate(e)
+  selectNextDay(e)
+}
+  
+ 
+const selectNextDay = (startDate) => {
+  let day = new Date(startDate)
+      day.setDate(day.getDate() + 1)
+    
+   return setNextDay(day)
+}
+
 
    return (
      
@@ -23,7 +39,7 @@ const stDate = (e) => {
   
 
   <DatePicker 
-   onChange={ e => setStartDate(e)}  
+   onChange={ e => startDateSearch(e)}  
    
    className="center"     
    style={{width: '20%'}}
@@ -197,7 +213,7 @@ const stDate = (e) => {
     },
     isRTL: false,
     maxDate: null,
-    minDate: startDate ,
+    minDate: nextDay ,
     onClose: null,
     onDraw: null,
     onOpen: null,
