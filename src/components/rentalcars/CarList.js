@@ -27,53 +27,67 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
       }
       return days
    } 
-//const handleCarBookedDates = (fetchCars) => {
-//     
-//   let handleBookings = fetchCars.map(car => car.books.flat());
-//   let tryIfWorks = handleBookings.map(book =>  book.map(info => { 
-//       return getSearchDates(info.startDate, info.endDate).forEach(element => {debugger})} 
-//   ) 
-//  );
-// 
-//   
-//      debugger
-//   return handleBookings
-//}
+
+ const compare = (arr1, arr2) => {
+
+        const finalArray = []
+        arr1.forEach(e1 => arr2.forEach(e2 =>
+          {if (e1.getTime() === e2){
+            finalArray.push(e1)
+          } 
+        } 
+     ) )
+          return finalArray
+  }
+          
 
   const handleCarList = fetchCars => {
         let condition = fetchCars.map(car => car.books).flat()
-//        handleCarBookedDates(fetchCars)
-      //   if(condition.length !== 0){
-      //      let dates = getSearchDates(bookStartDate, bookEndDate).map(date => date.getTime())
-      //      let books = fetchCars.map(car => {
-      //         car.books.filter(book => { 
-      //         getSearchDates(book.startDate, book.endDate).forEach(element => { 
-      //           return !dates.includes(element.getTime()) 
-      //        })
-      //      })
-      //  }).flat()
-      //          
-      //      let bookingIds = books.map(book => parseInt(book.car_id))
-      //      let listCars =  fetchCars.filter(car => bookingIds.includes(car.id))
-      //      return listCars
-      //     } else {
-            return fetchCars
-       //   }
-  };
+
+        if(condition.length !== 0){
+           let dates = getSearchDates(bookStartDate, bookEndDate).map(date => date.getTime())
+
+           let books = fetchCars.map(car => {
+             return  car.books.filter(book => {   
+              return compare(getSearchDates(book.startDate, book.endDate), dates).flat().length !== 0
+             })     
+          })    
+          let bookingIds = books.map(book => {
+            if(book.length !== 0){
+              return parseInt(book[0].car_id)}
+            else {return book}} )  
+            let listCars =  fetchCars.filter(car => !bookingIds.flat().includes(car.id))
+            return listCars
+           } else {
+        return fetchCars
+          }
+     };
+
+        
+
+   
+    let carList;
+   loggedInStatus ?  carList = fetchCars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> ) :
+   carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
+ 
+
+   return (
+       <div className="container">
+         <Row>
+           { carList } 
+         </Row>
+ 
+       </div>
+   )
+ }
+ 
+   export default connect(null, {  deleteCarCards })(CarList);
+         
+             
+ 
+
+
   
-  const carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
-
-  return (
-      <div className="container">
-        <Row>
-          { carList } 
-        </Row>
-
-      </div>
-  )
-}
-
-  export default connect(null, {  deleteCarCards })(CarList);
             
 
      
