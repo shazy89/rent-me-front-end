@@ -1,9 +1,10 @@
 import React from 'react'
 import CarCard from '../../containers/CarCard';
 import {connect} from 'react-redux';
-
 import { deleteCarCards } from '../../actions/carActions';
 import {  Row } from 'react-materialize';
+import NoAvailabile from './NoAvailabile'
+
 
 
 const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, bookEndDate  }) => {
@@ -52,28 +53,40 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
               return parseInt(book[0].car_id)}
             else {return book}} )  
             let listCars =  fetchCars.filter(car => !bookingIds.flat().includes(car.id))
+ 
             return listCars
-           } else {
-        return fetchCars
-          }
+          } else {
+       return fetchCars
+         }
+    };
+            
+    let carList;
+        if(loggedInStatus){
+          carList = fetchCars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
+        } else {
+          if (handleCarList(fetchCars).length === 0) {
+                return (
+                  <div> <NoAvailabile /></div>
+                )
+          } else {
+          carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
+        }
      };
-
-     let carList;
-    loggedInStatus ?  carList = fetchCars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> ) :
-    carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
+       
+        
+       return (
+           <div className="container">
+             <Row>
+               { carList } 
+             </Row>
+           </div>
+       )
+     }
+     
+     
+       export default connect(null, {  deleteCarCards })(CarList);
+    
   
- debugger
-    return (
-        <div className="container">
-          <Row>
-            { carList } 
-          </Row>
-        </div>
-    )
-  }
-  
-  
-    export default connect(null, {  deleteCarCards })(CarList);
         
 
    

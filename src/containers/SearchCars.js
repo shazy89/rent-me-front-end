@@ -34,7 +34,7 @@ const selectNextDay = (startDate) => {
    return (
      
      <div className="container">
-    <h2 className="z-depth-1 center"> RESERVE A VEHICLE</h2>
+    <h2 className="z-depth-1 center" style={{fontFamily: 'Times New Roman'}}> RESERVE A VEHICLE</h2>
   <div className="center">
   
 
@@ -42,7 +42,7 @@ const selectNextDay = (startDate) => {
    onChange={ e => startDateSearch(e)}  
    
    className="center"     
-   style={{width: '20%'}}
+   style={{width: '20%', fontFamily: 'Times New Roman'}}
    id="DatePicker-4"
    options={{
     autoClose: false,
@@ -137,7 +137,7 @@ const selectNextDay = (startDate) => {
 
     onChange={ e => setEndDate(e)}  
     className="center"
-    style={{width: '20%'}}
+    style={{width: '20%', fontFamily: 'Times New Roman'}}
     id="DatePicker-5"
 
     options={{
@@ -228,7 +228,7 @@ const selectNextDay = (startDate) => {
     >RETURN <Icon >date_range</Icon> </DatePicker>
     </div> 
     <div>
-      <Button  className="right 009688 teal" onClick={e => stDate(e)} style={{color: 'white'}} >  Check Availability</Button> 
+      <Button  className="right 009688 teal" onClick={e => stDate(e)} style={{color: 'white', fontFamily: 'Times New Roman'}} >  Check Availability</Button> 
      </div>
       <div>
       <Carousel

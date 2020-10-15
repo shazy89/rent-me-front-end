@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-//import { Button } from 'react-materialize';
 import { fetchCars } from './actions/carActions';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
@@ -14,6 +13,7 @@ import Book from './components/bookings/Book';
 import { connect } from 'react-redux';
 import SearchCars from './containers/SearchCars';
 import Loading from './containers/Loading'
+
 
 class App extends Component {
   constructor(props) {

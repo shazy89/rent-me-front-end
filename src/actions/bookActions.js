@@ -19,7 +19,8 @@ export const bookCar = (bookingData, history) => {
             .then( resp => resp.json() )
             .then( book => {
                 dispatch(addBook(book))
-                history.push('/') 
+                history.push('/')
+                alert('Your reservation is complete!') 
         })
       }
   }

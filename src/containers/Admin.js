@@ -3,14 +3,14 @@ import { Breadcrumb } from 'react-materialize'
 import {Link} from 'react-router-dom'
 
 
-const Admin = ({loggedInStatus}) => {
+const Admin = () => {
  return (
   <div>
     <Breadcrumb cols={12} className="teal orange"  >
   
      <Link to='/cars/new'>Create Car</Link>
-     {loggedInStatus ? <Link to='/carlist'>Car List</Link> : null}
-     <Link to='/booking/info'>Bokking Information</Link>
+     <Link to='/carlist'>Car List</Link> 
+     <Link to='/booking/info'>Booking Information</Link>
 
    </Breadcrumb>
   

@@ -69,7 +69,7 @@ export const editCarCard = (carinfo, history) => {
             .then( resp => resp.json() )
             .then( car => { 
                 dispatch(editCar(car))
-                history.push('/') 
+                history.push('/carlist') 
             })
     }
 }
