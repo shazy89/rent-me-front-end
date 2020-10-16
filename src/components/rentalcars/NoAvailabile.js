@@ -5,13 +5,15 @@ import {Link} from 'react-router-dom'
 const NoAvailabile = () => {
     
 return (
-<div className='center' style={{marginLeft: '35%' , marginTop: '100px'}}>
+<div  id="card 1" className='center' style={{marginLeft: '35%' , marginTop: '100px'}}>
 <Row>
-  <Col
+  <Col 
+     id="card col"
     m={6}
     s={12}
   >
     <Card
+       id="card"
       actions={[
         <Link to='/'>Home Page</Link>,
       ]}
