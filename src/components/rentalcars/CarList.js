@@ -38,23 +38,23 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
           
 
   const handleCarList = fetchCars => {
-        let condition = fetchCars.map(car => car.books).flat()
-
+        let condition = fetchCars.map(car => car.bookings).flat()
+             
         if(condition.length !== 0){
            let dates = getSearchDates(bookStartDate, bookEndDate).map(date => date.getTime())
 
-           let books = fetchCars.map(car => {
-             return  car.books.filter(book => {   
-              return compare(getSearchDates(book.startDate, book.endDate), dates).flat().length !== 0
+           let bookings = fetchCars.map(car => {
+             return  car.bookings.filter(booking => {   
+              return compare(getSearchDates(booking.startDate, booking.endDate), dates).flat().length !== 0
              })     
           })    
-          let bookingIds = books.map(book => {
-            if(book.length !== 0){
-              return parseInt(book[0].car_id)}
-            else {return book}} )  
+          let bookingIds = bookings.map(booking => {
+            if(booking.length !== 0){
+              return parseInt(booking[0].car_id)}
+            else {return booking}} )  
             let listCars =  fetchCars.filter(car => !bookingIds.flat().includes(car.id))
- 
             return listCars
+ 
           } else {
        return fetchCars
          }

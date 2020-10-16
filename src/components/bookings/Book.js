@@ -20,7 +20,7 @@ const Book = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history })
     const  handleSubmit = (e) => {
         e.preventDefault();
         const bookInfo = {
-            book: {startDate, endDate, firstName, lastName, phoneNumber, emailAdress, car_id }
+            booking: {startDate, endDate, firstName, lastName, phoneNumber, emailAdress, car_id }
         }
         bookCar(bookInfo, history)
     }
