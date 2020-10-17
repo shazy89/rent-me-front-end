@@ -110,22 +110,22 @@ handleLogout = () => {
                   )}
                 />
             <Route exact path='/cars/:id/book'  
-               render={props => ( this.props.startDate ? 
+               render={props => ( 
                <Booking {...props} fetchCars={this.props.cars} bookStartDate={this.props.startDate} 
-               bookEndDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/> :
-               <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/> 
-                )}
-            />
-            <Route exact path='/cars/new' component={ CarForm } />
-     
-      </Switch>
-      </BrowserRouter>
-        </div>
-  
-       );
-     }
-   };
-   const mapStateToProps = carsReducer => {
+               bookEndDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/> 
+               )}
+           />
+           <Route exact path='/cars/new' component={ CarForm } />
+    
+     </Switch>
+     </BrowserRouter>
+       </div>
+ 
+      );
+    }
+  };
+  const mapStateToProps = carsReducer => {
+             
 
     return {
       cars: carsReducer.cars.cars,

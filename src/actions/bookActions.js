@@ -16,12 +16,13 @@ const addBook = bookingData => {
           },
               body: JSON.stringify(bookingData)
           })
-              .then( resp => resp.json() )
-              .then( booking => {  
+              .then( resp => resp.json())
+              .then( booking => {  debugger
                   dispatch( addBook(booking))
                   history.push('/')
                   alert('Your reservation is complete!') 
-          })
+                })
+              .catch(booking => console.log(booking))
         }
     }
 

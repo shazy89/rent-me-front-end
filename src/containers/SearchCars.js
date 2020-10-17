@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 
 const SearchCars = (props) => {
 
-    const [startDate, setStartDate] = useState("")
-    const [endDate, setEndDate] = useState("")
+    const [startDate, setStartDate] = useState(null)
+    const [endDate, setEndDate] = useState(null)
     const [nextDay, setNextDay] = useState()
 
 const stDate = (e) => {
@@ -228,7 +228,9 @@ const selectNextDay = (startDate) => {
     >RETURN <Icon >date_range</Icon> </DatePicker>
     </div> 
     <div>
-      <Button  className="right 009688 teal" onClick={e => stDate(e)} style={{color: 'white', fontFamily: 'Times New Roman'}} >  Check Availability</Button> 
+        
+  {startDate && endDate ? <Button  className="right 009688 teal" onClick={e => stDate(e)} style={{color: 'white', fontFamily: 'Times New Roman'}} >  Check Availability</Button> : 
+   <Button disabled className="right 009688 teal" onClick={e => stDate(e)} style={{color: 'white', fontFamily: 'Times New Roman'}} >  Check Availability</Button>}
      </div>
       <div>
       <Carousel
