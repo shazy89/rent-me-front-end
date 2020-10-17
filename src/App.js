@@ -9,7 +9,7 @@ import CarForm from './components/rentalcars/CarForm';
 import Admin from './containers/Admin';
 import CarList from './components/rentalcars/CarList';
 import CarEdit from './components/rentalcars/CarEdit';
-import Book from './components/bookings/Book';
+import Booking from './components/bookings/Booking';
 import { connect } from 'react-redux';
 import SearchCars from './containers/SearchCars';
 import Loading from './containers/Loading'
@@ -41,14 +41,15 @@ loginStatus = () => {
     })
     .catch(error => console.log('api errors:', error))
   };
+
 handleLogin = (data) => {
+  
+  this.setState({
+    isLoggedIn: true,
+    user: data.user
+  })
+};
 
-    this.setState({
-      isLoggedIn: true,
-      user: data.user
-    })
-
-  };
       
 handleLogout = () => {
     this.setState({
@@ -80,16 +81,18 @@ handleLogout = () => {
        <Route exact path="/"
           render={props => (
            <SearchCars {...props}  loading={this.props.loading} loggedInStatus={this.state.isLoggedIn}/>
-        )} />
+          )} /> 
         
        <Route exact path='/carlist' 
-          render={props => ( this.props.startDate ?  <CarList {...props} fetchCars={this.props.cars} loading={this.props.loading} 
+       
+          render={props => ( 
+            this.props.startDate ? <CarList {...props} fetchCars={this.props.cars} loading={this.props.loading} 
             loggedInStatus={this.state.isLoggedIn} bookStartDate={this.props.startDate} bookEndDate={this.props.endDate}/> :
             <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/> 
     
          )}
-       />
-  
+      />
+          
        <Route 
           exact path='/login' 
           render={props => (
@@ -108,7 +111,7 @@ handleLogout = () => {
                 />
             <Route exact path='/cars/:id/book'  
                render={props => ( this.props.startDate ? 
-               <Book {...props} fetchCars={this.props.cars} bookStartDate={this.props.startDate} 
+               <Booking {...props} fetchCars={this.props.cars} bookStartDate={this.props.startDate} 
                bookEndDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/> :
                <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/> 
                 )}
@@ -133,6 +136,7 @@ handleLogout = () => {
     };
 
    export default connect(mapStateToProps, {fetchCars})(App);
+  
    
                
 

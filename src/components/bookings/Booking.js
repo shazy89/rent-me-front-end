@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import { bookCar } from '../../actions/bookActions'
 
 
-const Book = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history }) => {
+const Booking = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history }) => {
 
     const car = fetchCars.find(car => car.id === parseInt(match.params.id, 10))
 
@@ -52,7 +52,7 @@ const Book = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history })
     )
     }
            
-    export default connect(null, { bookCar })(Book)             
+    export default connect(null, { bookCar })(Booking)             
 
     
 

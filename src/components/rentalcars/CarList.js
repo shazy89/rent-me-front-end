@@ -3,7 +3,7 @@ import CarCard from '../../containers/CarCard';
 import {connect} from 'react-redux';
 import { deleteCarCards } from '../../actions/carActions';
 import {  Row } from 'react-materialize';
-import NoAvailabile from './NoAvailabile'
+import NoAvailable from './NoAvailable'
 
 
 
@@ -38,35 +38,37 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
           
 
   const handleCarList = fetchCars => {
-        let condition = fetchCars.map(car => car.bookings).flat()
+        let condition = fetchCars.map(car => car.bookings).flat();
              
         if(condition.length !== 0){
-           let dates = getSearchDates(bookStartDate, bookEndDate).map(date => date.getTime())
+           let dates = getSearchDates(bookStartDate, bookEndDate).map(date => date.getTime());
 
            let bookings = fetchCars.map(car => {
              return  car.bookings.filter(booking => {   
               return compare(getSearchDates(booking.startDate, booking.endDate), dates).flat().length !== 0
              })     
-          })    
+          });    
           let bookingIds = bookings.map(booking => {
             if(booking.length !== 0){
               return parseInt(booking[0].car_id)}
-            else {return booking}} )  
-            let listCars =  fetchCars.filter(car => !bookingIds.flat().includes(car.id))
+            else {return booking}} );
+
+            let listCars =  fetchCars.filter(car => !bookingIds.flat().includes(car.id));
+
             return listCars
- 
-          } else {
-       return fetchCars
+            } else {
+            return fetchCars
          }
+ 
     };
-            
+
     let carList;
         if(loggedInStatus){
           carList = fetchCars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
         } else {
           if (handleCarList(fetchCars).length === 0) {
                 return (
-                  <div> <NoAvailabile /></div>
+                  <div> <NoAvailable /></div>
                 )
           } else {
           carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
@@ -85,6 +87,8 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
      
      
        export default connect(null, {  deleteCarCards })(CarList);
+ 
+            
     
   
         
