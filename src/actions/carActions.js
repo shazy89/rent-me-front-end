@@ -4,6 +4,12 @@ return {
     cars
 }
 }
+const addErrors = (error) => {
+    return {
+      type: 'ADD_ERROR',
+      error
+    }
+}
 export const fetchCars = () => {
   
     return (dispatch) => {
@@ -42,18 +48,28 @@ export const createCar = (car, history) => {
            body: JSON.stringify(carParams)
        })
            .then( resp => resp.json() )
-           .then( car => {
-               dispatch(addCar(car))
-               history.push('/carlist') 
-             })
+           .then( car => {   debugger
+            if (car.errors) { 
+                dispatch(addErrors(car.errors))
+            } else {
+            dispatch(editCar(car))
+            history.push('/carlist') 
+            }
+        })
+        .catch((errors) => {
+            console.log(errors)
+            dispatch(addErrors(errors))
+        })
      }
  }
+        
   const editCar = car => {
    return {
        type: 'EDIT_CAR',
        car
       };
     };
+
           
 export const editCarCard = (carinfo, history) => {
 
@@ -68,8 +84,16 @@ export const editCarCard = (carinfo, history) => {
         })
             .then( resp => resp.json() )
             .then( car => { 
+                if (car.errors) {
+                    dispatch(addErrors(car.errors))
+                } else {
                 dispatch(editCar(car))
                 history.push('/carlist') 
+                }
+            })
+            .catch((errors) => {
+                console.log(errors)
+                dispatch(addErrors(errors))
             })
     }
 }

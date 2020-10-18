@@ -4,7 +4,7 @@ import { createCar } from '../../actions/carActions';
 import { connect } from 'react-redux';
 
 
-const CarForm = ({createCar, history }) => {
+const CarForm = ({createCar, history, erorors }) => {
     const [make, setMake] = useState("")
     const [model, setModel] = useState("")
     const [vehicleType, setvehicleType] = useState("")
@@ -57,9 +57,17 @@ const CarForm = ({createCar, history }) => {
         setImg()
         setSelectedFile()
     }
+    const  errorList =  erorors.map(error => {
+      return <li style={{color: "red"}} key={error}>{error}</li>
+      })
         
         return (
             <div className='container'>
+               <div>
+                 <ul>
+                   {erorors ? errorList : null}
+                </ul>
+               </div>  
             <form onSubmit={ handleSubmit }>
           
           <TextInput
@@ -169,8 +177,14 @@ const CarForm = ({createCar, history }) => {
             </div>
         )
 }
+const mapStateToProps = carsReducer => {
+             
+  return {
+    erorors: carsReducer.cars.bookingErrors
+  }
+ };
             
-export default connect(null, { createCar })(CarForm);
+export default connect(mapStateToProps, { createCar })(CarForm);
     
     
           
