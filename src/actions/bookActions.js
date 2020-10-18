@@ -5,6 +5,13 @@ const addBook = bookingData => {
     };
   };
 
+  const addErrors = (error) => {
+      return {
+        type: 'ADD_ERROR',
+        error
+      }
+  }
+
   export const bookCar = (bookingData, history) => {
                    
       return (dispatch) => {
@@ -17,14 +24,22 @@ const addBook = bookingData => {
               body: JSON.stringify(bookingData)
           })
               .then( resp => resp.json())
-              .then( booking => {  debugger
+              .then( booking => {
+                    if (booking.errors) {
+                        dispatch(addErrors(booking.errors))
+                    } else {
                   dispatch( addBook(booking))
                   history.push('/')
                   alert('Your reservation is complete!') 
+                   }
                 })
-              .catch(booking => console.log(booking))
+                .catch((errors) => {
+                    console.log(errors)
+                    dispatch(addErrors(errors))
+                })
         }
     }
+
 
                       
                  

@@ -1,4 +1,4 @@
-export default (state={cars: [], loading: true }, action) => {
+export default (state={cars: [], bookingErrors: [], loading: true }, action) => {
 
     switch(action.type) {
         case "ADD_CARS":
@@ -40,7 +40,13 @@ export default (state={cars: [], loading: true }, action) => {
                })  
             return {...state, cars: cars2,
              loading: false };
-                 
+        case "ADD_ERROR" :  
+
+        return {
+            ...state, 
+            bookingErrors:  action.error ,
+              }; 
+
              default:
                  return state;
              }

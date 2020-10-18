@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import { bookCar } from '../../actions/bookActions'
 
 
-const Booking = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history }) => {
+const Booking = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history, erorors }) => {
 
     const car = fetchCars.find(car => car.id === parseInt(match.params.id, 10))
 
@@ -24,7 +24,9 @@ const Booking = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history
         }
         bookCar(bookInfo, history)
     }
-  
+   const  errorList =  erorors.map(error => {
+    return <li style={{color: "red"}} key={error}>{error}</li>
+    })
     return (
         <div>
             <div>
@@ -32,6 +34,11 @@ const Booking = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history
             </div>
             <div className="container">
                  <p >* Required to complete your reservation</p>
+                 <div>
+                    <ul>
+                       {erorors ? errorList : null}
+                   </ul>
+                 </div>
                 <h4 className='center'>Contact Details</h4>
                <form onSubmit={e => handleSubmit(e)}>
                <TextInput icon="account_circle" placeholder="First Name"  
@@ -46,13 +53,22 @@ const Booking = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history
                 <Button placeholder="submit" type="submit" node="button" waves="light"
                         className="waves-effect orange btn right"  > <Icon right> check</Icon> Submit </Button>
                </form>
-            </div>
+          </div>
     
         </div>
     )
     }
-           
-    export default connect(null, { bookCar })(Booking)             
+
+    const mapStateToProps = carsReducer => {
+             
+        return {
+          erorors: carsReducer.cars.bookingErrors
+        }
+       };
+          
+   export default connect(mapStateToProps, { bookCar })(Booking)             
+ 
+
 
     
 

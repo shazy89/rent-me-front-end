@@ -86,13 +86,12 @@ handleLogout = () => {
        <Route exact path='/carlist' 
        
           render={props => ( 
-            this.props.startDate ? <CarList {...props} fetchCars={this.props.cars} loading={this.props.loading} 
-            loggedInStatus={this.state.isLoggedIn} bookStartDate={this.props.startDate} bookEndDate={this.props.endDate}/> :
-            <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/> 
+           <CarList {...props} fetchCars={this.props.cars} loading={this.props.loading} 
+            loggedInStatus={this.state.isLoggedIn} bookStartDate={this.props.startDate} bookEndDate={this.props.endDate}/> 
+
     
          )}
       />
-          
        <Route 
           exact path='/login' 
           render={props => (
@@ -110,9 +109,10 @@ handleLogout = () => {
                   )}
                 />
             <Route exact path='/cars/:id/book'  
-               render={props => ( 
+               render={props => ( this.props.startDate ?  
                <Booking {...props} fetchCars={this.props.cars} bookStartDate={this.props.startDate} 
-               bookEndDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/> 
+               bookEndDate={this.props.endDate} loggedInStatus={this.state.isLoggedIn}/> :
+               <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/>
                )}
            />
            <Route exact path='/cars/new' component={ CarForm } />
@@ -136,6 +136,7 @@ handleLogout = () => {
     };
 
    export default connect(mapStateToProps, {fetchCars})(App);
+          
   
    
                
