@@ -9,21 +9,24 @@ import NoAvailable from './NoAvailable'
 
 const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, bookEndDate  }) => {
 
-  const getSearchDates = (stDaye, endDate ) => {
-      let std = new Date(stDaye)
+  // create array with selected dates 
+  const getSearchDates = (stDate, endDate ) => {
+      let std = new Date(stDate)
       let end = new Date(endDate)
       let days = []
       let daysInTime = end.getTime() - std.getTime();
       let totalDays = daysInTime / (1000 * 3600 * 24);
-      
       for (let i = 0; i < Math.ceil(totalDays); i++){
-        let nextDay = new Date(stDaye)
-          nextDay.setDate(nextDay.getDate() + i)
+        let nextDay = new Date(stDate)
+        nextDay.setDate(nextDay.getDate() + i)
+
           days = [...days, nextDay]
       }
       return days
    } 
+      
 
+  // compare selected dates and booking dates
  const compare = (arr1, arr2) => {
 
         const finalArray = []
@@ -36,13 +39,13 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
           return finalArray
   }
           
-
+// check for available cares for rent 
   const handleCarList = fetchCars => {
         let condition = fetchCars.map(car => car.bookings).flat();
              
         if(condition.length !== 0){
-           let dates = getSearchDates(bookStartDate, bookEndDate).map(date => date.getTime());
-
+           let dates = getSearchDates(bookStartDate, bookEndDate).map(date =>  date.getTime());
+                   
            let bookings = fetchCars.map(car => {
              return  car.bookings.filter(booking => {   
               return compare(getSearchDates(booking.startDate, booking.endDate), dates).flat().length !== 0
@@ -59,9 +62,9 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
             } else {
             return fetchCars
          }
+     };
  
-    };
-
+         // create a car card or render not available template
     let carList;
         if(loggedInStatus){
           carList = fetchCars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )

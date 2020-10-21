@@ -30,6 +30,7 @@ const selectNextDay = (startDate) => {
    return setNextDay(day)
 }
 
+const carImgs = props.cars.map(car => car.img)
 
    return (
      
@@ -235,13 +236,7 @@ const selectNextDay = (startDate) => {
       <div>
       <Carousel
          carouselId="Carousel-2"
-         images={[
-           'https://res.cloudinary.com/dytheecsk/image/upload/v1602332271/cjgrqgrd2sb2sefquwp2.png',
-           'https://res.cloudinary.com/dytheecsk/image/upload/v1602332084/dbmprppnw3liondqotjn.png',
-           'https://res.cloudinary.com/dytheecsk/image/upload/v1602502859/ezthh4kz9eke2zvyjmzf.jpg',
-           'https://res.cloudinary.com/dytheecsk/image/upload/v1602268428/hcgrvhwrs0p0xzl8iioe.png',
-           'https://res.cloudinary.com/dytheecsk/image/upload/v1602189057/sqq8spvsvhzp7dwsvfae.png'
-         ]}
+         images= { carImgs }
          options={{
            dist: -100,
            duration: 200,
