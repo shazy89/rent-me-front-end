@@ -48,11 +48,11 @@ export const createCar = (car, history) => {
            body: JSON.stringify(carParams)
        })
            .then( resp => resp.json() )
-           .then( car => {   debugger
+           .then( car => {  
             if (car.errors) { 
                 dispatch(addErrors(car.errors))
             } else {
-            dispatch(editCar(car))
+            dispatch(addCar(car))
             history.push('/carlist') 
             }
         })

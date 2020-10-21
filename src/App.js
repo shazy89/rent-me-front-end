@@ -6,7 +6,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import NavBar from './containers/NavBar';
 import CarForm from './components/rentalcars/CarForm';
-import Admin from './components/adminuser/Admin';
+import AdminNavBar from './components/adminuser/AdminNavBar';
 import CarList from './components/rentalcars/CarList';
 import CarEdit from './components/rentalcars/CarEdit';
 import Booking from './components/bookings/Booking';
@@ -75,7 +75,7 @@ handleLogout = () => {
         <BrowserRouter>
 
        < NavBar {...this.props} handleLogOut={this.handleLogOut} loggedInStatus={this.state.isLoggedIn} />
-       { this.state.isLoggedIn ? <Admin loggedInStatus={this.state.isLoggedIn}/> : null}
+       { this.state.isLoggedIn ? <AdminNavBar loggedInStatus={this.state.isLoggedIn}/> : null}
        <Switch>
 
        <Route exact path="/"
@@ -101,11 +101,11 @@ handleLogout = () => {
              render={props => (
                <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
              )}
-           />;
+           />
                 <Route exact path='/cars/:id/edit'  
                    render={props => ( this.props.loading ? <Loading /> : <CarEdit {...props} fetchCars={this.props.cars} loggedInStatus={this.state.isLoggedIn}/>
                      )}
-                   />;
+                   />
                <Route exact path='/cars/:id/book'  
                   render={props => ( this.props.startDate ?  
                   <Booking {...props} fetchCars={this.props.cars} bookStartDate={this.props.startDate} 
@@ -115,8 +115,8 @@ handleLogout = () => {
               />;
               <Route exact path='/cars/new' component={ CarForm } />;
        
-        </Switch>;
-        </BrowserRouter>;
+        </Switch>
+        </BrowserRouter>
           </div>
     
          );
