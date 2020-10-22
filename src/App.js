@@ -13,7 +13,7 @@ import Booking from './components/bookings/Booking';
 import { connect } from 'react-redux';
 import SearchCars from './containers/SearchCars';
 import Loading from './containers/Loading'
-
+import BookingInfo from './components/adminuser/BookingInfo'
 
 class App extends Component {
   constructor(props) {
@@ -113,6 +113,10 @@ handleLogout = () => {
                   <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/>
                   )}
               />;
+               <Route exact path='/cars/:id/info'  
+                   render={props => (this.props.loading ? <Loading /> : <BookingInfo {...props} loggedInStatus={this.state.isLoggedIn}/>
+                     )}
+                   />;
               <Route exact path='/cars/new' component={ CarForm } />;
        
         </Switch>

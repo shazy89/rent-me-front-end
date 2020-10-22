@@ -29,12 +29,17 @@ const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
               </>
               <>
              { loggedInStatus ? <Button className="yellow right"  node="a" small  style={{margin: '10px'}}   waves="light"    >
-                <Link to={`/cars/${car.id}/edit`}>Edit </Link>
+                <Link  to={`/cars/${car.id}/edit`}>Edit </Link>
               </Button> : null }
-          
+
              { loggedInStatus ? <Button className="red right"  onClick={handleDelete} node="a" small  style={{margin: '10px'}}   waves="light"    >
                Delete
               </Button> : null }
+
+              { loggedInStatus ? <Button className="blue right"  node="a" small  style={{margin: '10px'}}   waves="light"    >
+                <Link style={{color: 'white'}} to={`/cars/${car.id}/info`}> Booking Info </Link>
+              </Button> : null }
+
               { loggedInStatus ? null : <Button style={{  marginTop: '70px' }} className={'ffa726 orange lighten-1'} >
                   <Icon right>drive_eta</Icon><Link to={`/cars/${car.id}/book`}>RentME </Link> </Button>
               }
