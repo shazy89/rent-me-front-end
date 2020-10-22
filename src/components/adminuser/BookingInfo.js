@@ -12,9 +12,12 @@ const BookingInfo = ({cars, match, loggedInStatus}) => {
       return {...booking, startDate: new Date(booking.startDate).toLocaleDateString(undefined, options), endDate: new Date(booking.endDate).toLocaleDateString(undefined, options) }
     } ) };
    
-       const tb = letsTry.bookings.map(booking => {
+       const tb = letsTry.bookings.map((booking, i )=> {
         return (
             <tr>
+                <td>
+                  {i + 1}
+                </td>
             <td>
               {booking.firstName + ` ` + booking.lastName}
             </td>
@@ -53,22 +56,24 @@ const BookingInfo = ({cars, match, loggedInStatus}) => {
           <Table>
   <thead>
     <tr>
-      <th data-field="id">
+      <th data-field="">
+      </th>
+      <th data-field="Customer">
        Customer
       </th>
-      <th data-field="name">
+      <th data-field="Email">
         Email
       </th>
-      <th data-field="name">
+      <th data-field="phoneNumber">
         Phone Number
       </th>
-      <th data-field="price">
+      <th data-field="pick-up">
         Pick Up
       </th>
-      <th data-field="id">
+      <th data-field="Return">
         Return
       </th>
-      <th data-field="price">
+      <th data-field="Total-Cost">
         Total Cost
       </th>
     </tr>
@@ -80,6 +85,7 @@ const BookingInfo = ({cars, match, loggedInStatus}) => {
       </div>
   )
 }
+       
 
 const mapStateToProps = carsReducer => {
     return {
