@@ -1,6 +1,6 @@
   export default (state={
-  startDate: '',
-  endDate: ''
+  startDate: null,
+  endDate: null
   }, action) => {
 
    switch (action.type) {

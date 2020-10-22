@@ -41,8 +41,8 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
           
 // check for available cares for rent 
   const handleCarList = fetchCars => {
+
         let condition = fetchCars.map(car => car.bookings).flat();
-             
         if(condition.length !== 0){
            let dates = getSearchDates(bookStartDate, bookEndDate).map(date =>  date.getTime());
                    
@@ -63,10 +63,12 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
             return fetchCars
          }
      };
+             
  
          // create a car card or render not available template
     let carList;
         if(loggedInStatus){
+          
           carList = fetchCars.map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
         } else {
           if (handleCarList(fetchCars).length === 0) {
