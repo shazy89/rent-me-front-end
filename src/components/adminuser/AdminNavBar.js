@@ -10,14 +10,14 @@ const Admin = () => {
   
      <Link to='/cars/new'>Create Car</Link>
      <Link to='/carlist'>Car List</Link> 
-     <Link to='/booking/info'>Booking Information</Link>
-
-   </Breadcrumb>
   
+   </Breadcrumb>
+    
   </div>
-)
+ )
 }
 export default Admin;
+
           
 
 
