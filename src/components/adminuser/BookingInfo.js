@@ -8,11 +8,11 @@ const BookingInfo = ({cars, match, loggedInStatus}) => {
 
     const car = cars.find(car => car.id === parseInt(match.params.id, 10));
     const letsTry = {...car, bookings: car.bookings.map(booking => {
-      return {...booking, startDate: new Date(booking.startDate), endDate: new Date(booking.endDate) }
-    } ) }
-debugger
-  //  const carInfo = {price: car.rentPrice, bookings: car.bookings};
-    const table = car.bookings.map(booking => { 
+        let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      return {...booking, startDate: new Date(booking.startDate).toLocaleDateString(undefined, options), endDate: new Date(booking.endDate).toLocaleDateString(undefined, options) }
+    } ) };
+   
+       const tb = letsTry.bookings.map(booking => {
         return (
             <tr>
             <td>
@@ -32,7 +32,9 @@ debugger
             </td>
           </tr>
         )
-    })
+       })
+       debugger
+  //  const carInfo = {price: car.rentPrice, bookings: car.bookings};
         
           
      //        let nextDay = new Date(stDate)
@@ -72,7 +74,7 @@ debugger
     </tr>
   </thead>
   <tbody>
-      { table }
+      { tb }
   </tbody>
 </Table>
       </div>
