@@ -36,7 +36,8 @@ export const createCar = (car, history) => {
          capacity: car.car.capacity ,
          baggingCapacity: car.car.baggingCapacity,
          rentPrice: car.car.rentPrice,
-         img: car.car.reader.result}
+         img: car.car.reader.result,
+         availability: true }
         }
    return (dispatch) => {
        fetch('http://localhost:3001/cars', {

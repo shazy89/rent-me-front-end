@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {  Table } from 'react-materialize';
 
-const BookingInfo = ({cars, match, loggedInStatus}) => {
+const BookingInfo = ({cars, match }) => {
 
     
 
@@ -36,20 +36,6 @@ const BookingInfo = ({cars, match, loggedInStatus}) => {
           </tr>
         )
        })
-       debugger
-  //  const carInfo = {price: car.rentPrice, bookings: car.bookings};
-        
-          
-     //        let nextDay = new Date(stDate)
-     //       nextDay.setDate(nextDay.getDate() + i)
-
-//  const handleTotalCoast = (dateIn, dateOut) => {
-//      let daysInTime = dateOut.getTime() - dateIn.getTime();
-//      let totalDays = daysInTime / (1000 * 3600 * 24);
-//      let total = Math.ceil(totalDays) * car.rentPrice
-//       return total
-// }
-
 
   return (
       <div  style={{width: '80%', marginLeft: '100px'}}>
@@ -86,7 +72,6 @@ const BookingInfo = ({cars, match, loggedInStatus}) => {
   )
 }
        
-
 const mapStateToProps = carsReducer => {
     return {
         cars: carsReducer.cars.cars

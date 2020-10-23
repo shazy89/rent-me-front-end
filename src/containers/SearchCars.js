@@ -22,7 +22,6 @@ const startDateSearch = (e) => {
   selectNextDay(e)
 }
   
- 
 const selectNextDay = (startDate) => {
   let day = new Date(startDate)
       day.setDate(day.getDate() + 1)
@@ -38,7 +37,6 @@ const carImgs = props.cars.map(car => car.img)
     <h2 className="z-depth-1 center" style={{fontFamily: 'Times New Roman'}}> RESERVE A VEHICLE</h2>
   <div className="center">
   
-
   <DatePicker 
    onChange={ e => startDateSearch(e)}  
    
@@ -256,6 +254,8 @@ const carImgs = props.cars.map(car => car.img)
     
 }
 
-
-
 export default connect(null, { addStartDate, addEndDate })(SearchCars);
+ 
+
+
+

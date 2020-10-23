@@ -1,10 +1,12 @@
-import React from 'react'
-import {  Col, Card, Icon, CardTitle, Button } from 'react-materialize'
+import React, { useState }  from 'react'
+import {  Col, Card, Icon, CardTitle, Button} from 'react-materialize'
 import {Link} from 'react-router-dom'
 
 
 
 const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
+
+
 
  const handleDelete = () => {
   deleteCarCards(car.id)
@@ -43,6 +45,7 @@ const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
               { loggedInStatus ? null : <Button style={{  marginTop: '70px' }} className={'ffa726 orange lighten-1'} >
                   <Icon right>drive_eta</Icon><Link to={`/cars/${car.id}/book`}>RentME </Link> </Button>
               }
+
             </>
          </>
           }
@@ -53,8 +56,14 @@ const CarCard = ({ car, deleteCarCards, loggedInStatus}) => {
     </Col>
    )
  }
+  
+ export default CarCard;
+  
+  
+
+                 
+            
               
-      export default CarCard;
   
   
           

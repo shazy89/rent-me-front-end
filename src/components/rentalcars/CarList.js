@@ -7,7 +7,7 @@ import NoAvailable from './NoAvailable'
 
 
 
-const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, bookEndDate  }) => {
+const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, bookEndDate, editCarCard  }) => {
 
   // create array with selected dates 
   const getSearchDates = (stDate, endDate ) => {
@@ -76,7 +76,7 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
                   <div> <NoAvailable /></div>
                 )
           } else {
-          carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus} /> )
+          carList = handleCarList(fetchCars).map( car => <CarCard key={car.id} car={car} deleteCarCards={deleteCarCards} loggedInStatus={loggedInStatus}  /> )
         }
      };
        
@@ -90,8 +90,8 @@ const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, boo
        )
      }
      
+     export default connect(null, {  deleteCarCards })(CarList);
      
-       export default connect(null, {  deleteCarCards })(CarList);
  
             
     
