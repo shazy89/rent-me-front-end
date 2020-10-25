@@ -7,7 +7,7 @@ import NoAvailable from './NoAvailable'
 
 
 
-const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, bookEndDate, editCarCard  }) => {
+const CarList = ({ fetchCars, deleteCarCards, loggedInStatus, bookStartDate, bookEndDate  }) => {
 
   // create array with selected dates 
   const getSearchDates = (stDate, endDate ) => {
