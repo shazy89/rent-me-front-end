@@ -59,9 +59,6 @@ const BookingInfo = ({cars, match }) => {
       <th data-field="Return">
         Return
       </th>
-      <th data-field="Total-Cost">
-        Total Cost
-      </th>
     </tr>
   </thead>
   <tbody>

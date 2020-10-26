@@ -56,9 +56,7 @@ const Booking = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history
           </div>
     
         </div>
-    )
-    }
-
+    )}
     const mapStateToProps = carsReducer => {
              
         return {
@@ -67,6 +65,8 @@ const Booking = ({bookCar, match, fetchCars, bookStartDate, bookEndDate, history
        };
           
    export default connect(mapStateToProps, { bookCar })(Booking)             
+ 
+
  
 
 

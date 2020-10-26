@@ -114,7 +114,7 @@ export const deleteCarCards = (carId) => {
        })
             .then( resp => resp.json() )
             .then( car => { 
-                dispatch(deleteCar(car))})
+              dispatch(deleteCar(car))})
     }
 }
    

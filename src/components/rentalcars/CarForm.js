@@ -60,129 +60,130 @@ const CarForm = ({createCar, history, erorors }) => {
     const  errorList =  erorors.map(error => {
       return <li style={{color: "red"}} key={error}>{error}</li>
       })
+      
+      return (
+          <div className='container'>
+             <div>
+               <ul>
+                 {erorors ? errorList : null}
+              </ul>
+             </div>  
+          <form onSubmit={ handleSubmit }>
         
-        return (
-            <div className='container'>
-               <div>
-                 <ul>
-                   {erorors ? errorList : null}
-                </ul>
-               </div>  
-            <form onSubmit={ handleSubmit }>
-          
-          <TextInput
-            placeholder="Make"
-            type="text"
-            name="make"
-            value={make}
-            onChange={ e => setMake(e.target.value)}
-          />
- 
-          <TextInput
-            placeholder="Model"
-            type="text"
-            name="model"
-            value={model}
-            onChange={e => setModel(e.target.value)}
-          />
-     <Select
-        id="Select-9"
-        onChange={e => setvehicleType(e.target.value)}
-        name="vehicleType"
-        multiple={false}
-        options={{
-          classes: '',
-          dropdownOptions: {
-            alignment: 'left',
-            autoTrigger: true,
-            closeOnClick: true,
-            constrainWidth: true,
-            coverTrigger: true,
-            hover: false,
-            inDuration: 150,
-            onCloseEnd: null,
-            onCloseStart: null,
-            onOpenEnd: null,
-            onOpenStart: null,
-            outDuration: 250
-          }
-        }}
-        value={vehicleType}
+        <TextInput
+          placeholder="Make"
+          type="text"
+          name="make"
+          value={make}
+          onChange={ e => setMake(e.target.value)}
+        />
+
+        <TextInput
+          placeholder="Model"
+          type="text"
+          name="model"
+          value={model}
+          onChange={e => setModel(e.target.value)}
+        />
+   <Select
+      id="Select-9"
+      onChange={e => setvehicleType(e.target.value)}
+      name="vehicleType"
+      multiple={false}
+      options={{
+        classes: '',
+        dropdownOptions: {
+          alignment: 'left',
+          autoTrigger: true,
+          closeOnClick: true,
+          constrainWidth: true,
+          coverTrigger: true,
+          hover: false,
+          inDuration: 150,
+          onCloseEnd: null,
+          onCloseStart: null,
+          onOpenEnd: null,
+          onOpenStart: null,
+          outDuration: 250
+        }
+      }}
+      value={vehicleType}
+    >
+    <option
+        disabled
+        value=""
       >
-      <option
-          disabled
-          value=""
-        >
-          Choose your option
-        </option>
-        <option value="Compact Car">
-          Compact Car
-        </option>
-        <option value="Suv">
-          Suv
-        </option>
-        <option value="Luxury Car">
-         Luxury Car
-        </option>
-     </Select>
-        
-        <TextInput inputClassName='input-field col s6'
-            placeholder="Capacity"
-            type="text"
-            name="capacity"
-            value={capacity}
-            onChange={e => setCapacity(e.target.value)}
-            />
-          <TextInput
-            placeholder="BaggingCapacity"
-            type="text"
-            name="baggingCapacity"
-            value={baggingCapacity}
-            onChange={e => setBaggingCapacity(e.target.value)}
-            />
-          <TextInput
-            placeholder="RentPrice"
-            type="text"
-            name="rentPrice"
-            value={rentPrice}
-            onChange={e => setRentPrice(e.target.value)}
-            />
-          <TextInput
-            id="TextInput-4"
-            label="ADD IMG"
-            type="file"
-            name="img"
-            onChange={handleFileInputChange}
-            value= {img}
-            />
-           {previewSource && (
-                <img 
-                src={previewSource}
-                alt="chosen"
-                style={{ height: '100px' }}
-                />
-            )}
-          <div>
-          <button placeholder="submit" type="submit"  
-             node="button"
-           
-              waves="light"
-              className="waves-effect orange btn"
-              ><Icon right> check</Icon>
-                Submit
-            </button>
-            </div>
-          </form>
-                
-            </div>
-        )
+        Choose your option
+      </option>
+      <option value="Compact Car">
+        Compact Car
+      </option>
+      <option value="Suv">
+        Suv
+      </option>
+      <option value="Luxury Car">
+       Luxury Car
+      </option>
+   </Select>
+      
+      <TextInput inputClassName='input-field col s6'
+          placeholder="Capacity"
+          type="text"
+          name="capacity"
+          value={capacity}
+          onChange={e => setCapacity(e.target.value)}
+          />
+        <TextInput
+          placeholder="BaggingCapacity"
+          type="text"
+          name="baggingCapacity"
+          value={baggingCapacity}
+          onChange={e => setBaggingCapacity(e.target.value)}
+          />
+        <TextInput
+          placeholder="RentPrice"
+          type="text"
+          name="rentPrice"
+          value={rentPrice}
+          onChange={e => setRentPrice(e.target.value)}
+          />
+        <TextInput
+          id="TextInput-4"
+          label="ADD IMG"
+          type="file"
+          name="img"
+          onChange={handleFileInputChange}
+          value= {img}
+          />
+         {previewSource && (
+              <img 
+              src={previewSource}
+              alt="chosen"
+              style={{ height: '100px' }}
+              />
+          )}
+        <div>
+        <button placeholder="submit" type="submit"  
+           node="button"
+           waves="light"
+           className="waves-effect orange btn"
+           ><Icon right> check</Icon>
+             Submit
+         </button>
+         </div>
+       </form>
+             
+         </div>
+     )
 }
 const mapStateToProps = carsReducer => {
+return {
+ erorors: carsReducer.cars.bookingErrors
+}
+};
+        
+           
              
-  return {
-    erorors: carsReducer.cars.bookingErrors
-  }
- };
             
 export default connect(mapStateToProps, { createCar })(CarForm);
     
