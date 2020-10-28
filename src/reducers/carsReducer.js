@@ -14,8 +14,8 @@ export default (state={cars: [], bookingErrors: [], loading: true }, action) => 
         case 'DELETE_CAR':
   
             let cars = state.cars.filter(car => car.id !== action.car.id )
-            return {...state, cars: cars,
-                    loading: false };
+            return {...state, cars: cars, loading: false };
+                    
 
         case 'EDIT_CAR':
                   
@@ -44,7 +44,7 @@ export default (state={cars: [], bookingErrors: [], loading: true }, action) => 
 
         return {
             ...state, 
-            bookingErrors:  action.error ,
+            bookingErrors:  action.error,
               }; 
 
              default:

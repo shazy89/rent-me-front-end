@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
 import { Row, Col, Card, Icon, CardTitle } from 'react-materialize';
-
 
 
 const InfoBookCard = ({ car, startDate, endDate }) => {
@@ -50,3 +48,5 @@ return (
 }
 
 export default InfoBookCard;
+
+

@@ -16,9 +16,9 @@ const CarEdit = (props) => {
     
     const car = props.fetchCars.find(car => car.id === parseInt(props.match.params.id, 10))
           useEffect(() => {
-
             handleEdit(car)
            },[])
+
 
            const handleEdit = (car) => {
                setMake(car.make)
