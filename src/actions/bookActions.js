@@ -15,7 +15,7 @@ const addBook = bookingData => {
   export const bookCar = (bookingData, history) => {
                    
       return (dispatch) => {
-          fetch(`https://rent-me-front-end.herokuapp.com/${bookingData.booking.car_id}/bookings`, {
+          fetch(`https://rent-me-back-end.herokuapp.com/${bookingData.booking.car_id}/bookings`, {
               method: "POST",
               headers: {
                   'Accept': 'application/json',
