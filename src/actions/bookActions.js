@@ -15,7 +15,7 @@ const addBook = bookingData => {
   export const bookCar = (bookingData, history) => {
                    
       return (dispatch) => {
-          fetch(`https://chatster-app-api.herokuapp.com/${bookingData.booking.car_id}/bookings`, {
+          fetch(`http://localhost:3001//cars/${bookingData.booking.car_id}/bookings`, {
               method: "POST",
               headers: {
                   'Accept': 'application/json',
