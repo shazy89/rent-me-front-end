@@ -22,6 +22,7 @@ handleChange = (event) => {
     })
   };
 handleSubmit = (event) => {
+  debugger
     event.preventDefault()
     const {username, email, password} = this.state
     let user = {
@@ -30,7 +31,7 @@ handleSubmit = (event) => {
       password: password
     }
     
-    axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+    axios.post('https://rent-me-back-end.herokuapp.com/login', {user}, {withCredentials: true})
     .then(response => {  
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)

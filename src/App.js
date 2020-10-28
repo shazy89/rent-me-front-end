@@ -30,7 +30,7 @@ class App extends Component {
     };
   
   loginStatus = () => {
-      axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+      axios.get('https://rent-me-back-end.herokuapp.com/logged_in', {withCredentials: true})
       .then(response => {  
         if (response.data.logged_in) {
           this.handleLogin(response.data)
@@ -58,7 +58,7 @@ class App extends Component {
     };
   
     handleLogOut = () => {
-      axios.delete('http://localhost:3001/logout', {withCredentials: true})
+      axios.delete('https://rent-me-back-end.herokuapp.com/logout', {withCredentials: true})
       .then(response => {
         this.handleLogout()
         this.history.push('/')
