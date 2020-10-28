@@ -52,10 +52,10 @@ class App extends Component {
   handleLogout = () => {
       this.setState({
       isLoggedIn: false,
+      
       user: {}
       })
     };
-      
   
     handleLogOut = () => {
       axios.delete('http://localhost:3001/logout', {withCredentials: true})

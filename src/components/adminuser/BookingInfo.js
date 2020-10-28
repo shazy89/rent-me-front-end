@@ -4,6 +4,8 @@ import {  Table } from 'react-materialize';
 
 const BookingInfo = ({cars, match }) => {
 
+    
+
     const car = cars.find(car => car.id === parseInt(match.params.id, 10));
     const letsTry = {...car, bookings: car.bookings.map(booking => {
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -74,5 +76,3 @@ const mapStateToProps = carsReducer => {
 }
 
 export default connect(mapStateToProps)(BookingInfo);
-    
-
