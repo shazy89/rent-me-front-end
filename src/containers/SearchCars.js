@@ -232,21 +232,7 @@ const selectNextDay = (startDate) => {
    <Button disabled className="right 009688 teal" onClick={e => stDate(e)} style={{color: 'white', fontFamily: 'Times New Roman'}} >  Check Availability</Button>}
      </div>
       <div>
-      <Carousel
-         carouselId="Carousel-2"
-         images= ''
-         options={{
-           dist: -100,
-           duration: 200,
-           fullWidth: false,
-           indicators: false,
-           noWrap: false,
-           numVisible: 5,
-           onCycleTo: null,
-           padding: 0,
-           shift: 0
-         }}
-            /> 
+
       </div> 
  
 </div>
@@ -257,5 +243,19 @@ const selectNextDay = (startDate) => {
 export default connect(null, { addStartDate, addEndDate })(SearchCars);
  
 
-
+    //<Carousel
+    //carouselId="Carousel-2"
+    //images= ''
+    //options={{
+    //  dist: -100,
+    //  duration: 200,
+    //  fullWidth: false,
+    //  indicators: false,
+    //  noWrap: false,
+    //  numVisible: 5,
+    //  onCycleTo: null,
+    //  padding: 0,
+    //  shift: 0
+    //}}
+    //   /> 
 
