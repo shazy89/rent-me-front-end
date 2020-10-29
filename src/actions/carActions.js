@@ -49,8 +49,8 @@ const addCars = (cars) => {
                body: JSON.stringify(carParams)
            })
                .then( resp => resp.json() )
-               .then( car => {  
-                if (car.errors) { debugger
+               .then( car => {  debugger
+                if (car.errors) {
                     dispatch(addErrors(car.errors))
                 } else {
                 dispatch(addCar(car))
