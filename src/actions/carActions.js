@@ -100,23 +100,23 @@ const addCars = (cars) => {
     }
     
     const deleteCar = (car) => {
-    
-    return {
-        type: 'DELETE_CAR',
-        car
-      }
-    }
-    export const deleteCarCards = (carId) => {
-               
-        return (dispatch) => {
-           return fetch(`http://localhost:3001/cars/${carId}`, {
-               method: 'DELETE'
-           })
-                .then( resp => resp.json() )
-                .then( car => { 
-                  dispatch(deleteCar(car))})
+        return {
+            type: 'DELETE_CAR',
+            car
+          }
         }
-    }
+        export const deleteCarCards = (carId) => {
+                   
+            return (dispatch) => {
+               return fetch(`http://localhost:3001/cars/${carId}`, {
+                   method: 'DELETE'
+               })
+                    .then( resp => resp.json() )
+                    .then( car => { 
+                      dispatch(deleteCar(car))})
+            }
+        }
+    
        
                
     

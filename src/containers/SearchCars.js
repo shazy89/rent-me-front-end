@@ -29,7 +29,7 @@ const selectNextDay = (startDate) => {
    return setNextDay(day)
 }
 
-const carImgs = props.cars.map(car => car.img)
+//const carImgs = props.cars.map(car => car.img)
 
    return (
      
@@ -234,7 +234,7 @@ const carImgs = props.cars.map(car => car.img)
       <div>
       <Carousel
          carouselId="Carousel-2"
-         images= { carImgs }
+         images= ''
          options={{
            dist: -100,
            duration: 200,
