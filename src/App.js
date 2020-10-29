@@ -81,8 +81,10 @@ class App extends Component {
   
              <Route exact path='/carlist' 
                  render={props => ( 
+                  this.props.startDate ?  
                   <CarList {...props} fetchCars={this.props.cars} loading={this.props.loading} 
-                   loggedInStatus={this.state.isLoggedIn} bookStartDate={this.props.startDate} bookEndDate={this.props.endDate}/> 
+                   loggedInStatus={this.state.isLoggedIn} bookStartDate={this.props.startDate} bookEndDate={this.props.endDate}/> :
+                   <SearchCars {...props}  loggedInStatus={this.state.isLoggedIn}/>
                    )} />;
           
               <Route exact path='/login' 
