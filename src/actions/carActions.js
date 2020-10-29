@@ -13,7 +13,7 @@ const addCars = (cars) => {
     export const fetchCars = () => {
       
         return (dispatch) => {
-            fetch('https://rent-me-back-end.herokuapp.com/cars')
+            fetch('http://localhost:3001/cars')
                 .then( resp => resp.json() )
                 .then( cars => {  
                     dispatch(addCars(cars))})
@@ -40,7 +40,7 @@ const addCars = (cars) => {
              availability: true }
             }
        return (dispatch) => {
-           fetch('https://rent-me-back-end.herokuapp.com/cars', {
+           fetch('http://localhost:3001/cars', {
                method: "POST",
                headers: {
                    'Accept': 'application/json',
@@ -50,7 +50,7 @@ const addCars = (cars) => {
            })
                .then( resp => resp.json() )
                .then( car => {  
-                if (car.errors) { 
+                if (car.errors) { debugger
                     dispatch(addErrors(car.errors))
                 } else {
                 dispatch(addCar(car))
@@ -75,7 +75,7 @@ const addCars = (cars) => {
     export const editCarCard = (carinfo, history) => {
     
         return (dispatch) => {
-            fetch(`https://rent-me-back-end.herokuapp.com/cars/${carinfo.car.carId}`, {
+            fetch(`http://localhost:3001/cars/${carinfo.car.carId}`, {
                 method: "PATCH",
                 headers: {
                     'Accept': 'application/json',
@@ -109,7 +109,7 @@ const addCars = (cars) => {
     export const deleteCarCards = (carId) => {
                
         return (dispatch) => {
-           return fetch(`https://rent-me-back-end.herokuapp.com/cars/${carId}`, {
+           return fetch(`http://localhost:3001/cars/${carId}`, {
                method: 'DELETE'
            })
                 .then( resp => resp.json() )
