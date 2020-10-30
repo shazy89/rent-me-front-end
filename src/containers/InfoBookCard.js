@@ -14,7 +14,7 @@ const handleTotalCoast = () => {
     let totalDays = daysInTime / (1000 * 3600 * 24);
     let total = Math.ceil(totalDays) * car.rentPrice
     setTotalCost(total)
-    setTotalBookDays(totalDays)
+    setTotalBookDays(Math.ceil(totalDays))
 }
 useEffect(() => {
     handleTotalCoast()
