@@ -13,7 +13,7 @@ const addBook = bookingData => {
   }
 
   export const bookCar = (bookingData, history) => {
-                   
+         
       return (dispatch) => {
           fetch(`http://localhost:3001//cars/${bookingData.booking.car_id}/bookings`, {
               method: "POST",
@@ -24,18 +24,14 @@ const addBook = bookingData => {
               body: JSON.stringify(bookingData)
           })
               .then( resp => resp.json())
-              .then( booking => {
-                    if (booking.errors) {
-                        dispatch(addErrors(booking.errors))
-                    } else {
-                  dispatch( addBook(booking))
-                  history.push('/')
-                  alert('Your reservation is complete!') 
-                   }
+              .then( booking => { 
+                dispatch( addBook(booking))
+                history.push('/')
+                alert('Your reservation is complete!') 
                 })
                 .catch((errors) => {
                     console.log(errors)
-                    dispatch(addErrors(errors))
+                   // dispatch(addErrors(errors))
                 })
         }
     }

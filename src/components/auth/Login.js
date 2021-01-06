@@ -30,7 +30,7 @@ handleSubmit = (event) => {
       password: password
     }
     
-    axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+    axios.post('http://localhost:3001/login', {user})
     .then(response => {  
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)

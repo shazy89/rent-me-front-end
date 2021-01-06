@@ -30,7 +30,7 @@ class App extends Component {
     };
   
   loginStatus = () => {
-      axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+      axios.get('http://localhost:3001/logged_in')
       .then(response => {  
         if (response.data.logged_in) {
           this.handleLogin(response.data)
@@ -58,7 +58,7 @@ class App extends Component {
       
   
     handleLogOut = () => {
-      axios.delete('http://localhost:3001/logout', {withCredentials: true})
+      axios.delete('http://localhost:3001/logout')
       .then(response => {
         this.handleLogout()
         this.history.push('/')
